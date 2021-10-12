@@ -7,7 +7,7 @@ import (
 	"C"
 )
 
-import "python"
+import python "github.com/M-Quadra/go-python3-submodule"
 
 // Py_INCREF
 

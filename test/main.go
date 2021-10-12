@@ -2,7 +2,8 @@ package main
 
 import (
 	"os"
-	"python/py"
+
+	"github.com/M-Quadra/go-python3-submodule/py"
 )
 
 func init() {

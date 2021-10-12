@@ -9,8 +9,9 @@ import (
 )
 
 import (
-	"python"
 	"unsafe"
+
+	python "github.com/M-Quadra/go-python3-submodule"
 )
 
 func toC(obj *python.PyObject) *C.PyObject {
