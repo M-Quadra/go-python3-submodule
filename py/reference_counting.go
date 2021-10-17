@@ -9,7 +9,10 @@ import (
 
 import python "github.com/M-Quadra/go-python3-submodule"
 
-// Py_INCREF
+// IncRef Py_INCREF
+func IncRef(o *python.PyObject) {
+	C.Py_IncRef(toC(o))
+}
 
 // Py_XINCREF
 
