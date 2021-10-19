@@ -4,12 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	py "github.com/M-Quadra/go-python3-submodule/py"
+	"github.com/M-Quadra/go-python3-submodule/py"
 	pydict "github.com/M-Quadra/go-python3-submodule/py-dict"
 	pyimport "github.com/M-Quadra/go-python3-submodule/py-import"
 	pymodule "github.com/M-Quadra/go-python3-submodule/py-module"
 	pyunicode "github.com/M-Quadra/go-python3-submodule/py-unicode"
-
 	"github.com/stretchr/testify/assert"
 )
 

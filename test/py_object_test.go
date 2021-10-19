@@ -292,6 +292,8 @@ func TestPyObjectType(t *testing.T) {
 }
 
 func TestPyObjectSize(t *testing.T) {
+	defer pyerr.Clear()
+
 	vPy := pylong.FromInt(rand.Int())
 	defer py.DecRef(vPy)
 	assert.Equal(t, -1, pyobject.Size(vPy))
@@ -305,6 +307,8 @@ func TestPyObjectSize(t *testing.T) {
 }
 
 func TestPyObjectLength(t *testing.T) {
+	defer pyerr.Clear()
+
 	vPy := pylong.FromInt(rand.Int())
 	defer py.DecRef(vPy)
 	assert.Equal(t, -1, pyobject.Length(vPy))
@@ -331,6 +335,8 @@ func TestPyObjectLengthHint(t *testing.T) {
 }
 
 func TestPyObjectGetItem(t *testing.T) {
+	defer pyerr.Clear()
+
 	dicPy := pydict.New()
 	defer py.DecRef(dicPy)
 
@@ -347,6 +353,8 @@ func TestPyObjectGetItem(t *testing.T) {
 }
 
 func TestPyObjectSetItem(t *testing.T) {
+	defer pyerr.Clear()
+
 	dicPy := pydict.New()
 	defer py.DecRef(dicPy)
 
@@ -363,6 +371,8 @@ func TestPyObjectSetItem(t *testing.T) {
 }
 
 func TestPyObjectDelItem(t *testing.T) {
+	defer pyerr.Clear()
+
 	dicPy := pydict.New()
 	defer py.DecRef(dicPy)
 
