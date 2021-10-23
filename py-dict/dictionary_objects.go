@@ -48,6 +48,10 @@ func ProxyNew(mapping *python.PyObject) *python.PyObject {
 
 // Clear PyDict_Clear
 func Clear(p *python.PyObject) {
+	if p == nil {
+		return
+	}
+
 	C.PyDict_Clear(toC(p))
 }
 
@@ -67,7 +71,7 @@ func Copy(p *python.PyObject) *python.PyObject {
 
 // SetItem PyDict_SetItem
 func SetItem(p, key, val *python.PyObject) bool {
-	if key == nil || val == nil {
+	if p == nil || key == nil || val == nil {
 		return false
 	}
 
@@ -88,7 +92,7 @@ func SetItemString(p *python.PyObject, key string, val *python.PyObject) bool {
 
 // DelItem PyDict_DelItem
 func DelItem(p, key *python.PyObject) bool {
-	if key == nil {
+	if p == nil || key == nil {
 		return false
 	}
 
@@ -105,7 +109,7 @@ func DelItemString(p *python.PyObject, key string) bool {
 
 // GetItem PyDict_GetItem
 func GetItem(p, key *python.PyObject) *python.PyObject {
-	if key == nil {
+	if p == nil || key == nil {
 		return nil
 	}
 
@@ -131,7 +135,7 @@ func GetItemString(p *python.PyObject, key string) *python.PyObject {
 
 // SetDefault PyDict_SetDefault
 func SetDefault(p, key, defaultobj *python.PyObject) *python.PyObject {
-	if key == nil || defaultobj == nil {
+	if p == nil || key == nil || defaultobj == nil {
 		return nil
 	}
 
