@@ -1,8 +1,10 @@
 # go-python3-submodule
 
-submodule style for Go -> C API -> Python3
+Go -> C API -> Python3, submodule style
 
-为了解决在妄图强类型道路上十分感人的编译速度, 又开始了子模块拆分...
+尝试将[DataDog/go-python3]改造得更加OO未果, 为绕过循环引用整合模块后遭遇十分感人的编译速度, 令我抓狂。
+
+历史的倒车再次上演, 索性分离子模块, 先完成绑定...
 
 # 坑 / Todo
 

@@ -1,0 +1,65 @@
+package main
+
+import (
+	"math"
+	"math/rand"
+	"strconv"
+	"testing"
+
+	"github.com/M-Quadra/go-python3-submodule/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/py-err"
+	pyfloat "github.com/M-Quadra/go-python3-submodule/py-float"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/py-unicode"
+	"github.com/stretchr/testify/assert"
+)
+
+func TestPyFloatCheck(t *testing.T) {
+	assert.False(t, pyfloat.Check(nil))
+
+	f := pyfloat.FromFloat64(rand.Float64())
+	defer py.DecRef(f)
+	assert.True(t, pyfloat.Check(f))
+	assert.True(t, pyfloat.CheckExact(f))
+
+	str := pyunicode.FromString("123")
+	defer py.DecRef(str)
+	assert.False(t, pyfloat.Check(str))
+	assert.False(t, pyfloat.CheckExact(str))
+}
+
+func TestPyFloatFromString(t *testing.T) {
+	assert.Nil(t, pyfloat.FromStringPy(nil))
+
+	v := rand.Float64()
+	strF := strconv.FormatFloat(v, 'f', -1, 64)
+	str := pyunicode.FromString(strF)
+	defer py.DecRef(str)
+
+	vA := pyfloat.FromString(strF)
+	defer py.DecRef(vA)
+	vB := pyfloat.FromStringPy(str)
+	defer py.DecRef(vB)
+
+	assert.True(t, math.Abs(v-pyfloat.AsFloat64(vA)) < 1e8)
+	assert.True(t, math.Abs(v-pyfloat.AsFloat64(vB)) < 1e8)
+}
+
+func TestPyFloatAsFloat64(t *testing.T) {
+	assert.Equal(t, -1.0, pyfloat.AsFloat64(nil))
+	defer pyerr.Clear()
+
+	vRand := rand.Float64()
+	f := pyfloat.FromFloat64(vRand)
+	defer py.DecRef(f)
+
+	assert.True(t, math.Abs(pyfloat.AsFloat64(f)-vRand) < 1e8)
+}
+
+func TestPyFloatGetInfo(t *testing.T) {
+	assert.NotNil(t, pyfloat.GetInfo())
+}
+
+func TestPyFloatGetMinMax(t *testing.T) {
+	assert.True(t, math.Abs(2.2250738585072014e-308-pyfloat.GetMin()) < 1e8)
+	assert.True(t, math.Abs(math.MaxFloat64-pyfloat.GetMax()) < 1e8)
+}
