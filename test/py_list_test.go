@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/py-err"
 	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
 	pylong "github.com/M-Quadra/go-python3-submodule/py-long"
 	pytuple "github.com/M-Quadra/go-python3-submodule/py-tuple"
@@ -118,6 +119,7 @@ func TestPyListGetSlice(t *testing.T) {
 
 func TestPyListSort(t *testing.T) {
 	assert.False(t, pylist.Sort(nil))
+	pyerr.Clear()
 
 	cnt := rand.Intn(1000) + 10
 	ary := make([]int, 0, cnt)
