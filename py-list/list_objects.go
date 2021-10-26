@@ -77,6 +77,10 @@ func Insert(list *python.PyObject, index int, item *python.PyObject) bool {
 
 // Append PyList_Append
 func Append(list *python.PyObject, item *python.PyObject) bool {
+	if list == nil {
+		return false
+	}
+
 	return C.PyList_Append(toC(list), toC(item)) == 0
 }
 
