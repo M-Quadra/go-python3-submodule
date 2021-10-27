@@ -14,11 +14,6 @@ import (
 	python "github.com/M-Quadra/go-python3-submodule"
 )
 
-type pyImport struct{}
-
-// PyImport PyImport_xxx
-var PyImport = pyImport{}
-
 // ImportModule PyImport_ImportModule
 func ImportModule(name string) *python.PyObject {
 	nameC := C.CString(name)
