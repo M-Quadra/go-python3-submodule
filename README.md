@@ -8,6 +8,12 @@ Go -> C API -> Python3, submodule style
 
 历史的倒车再次上演, 索性分离子模块, 先完成绑定...
 
+# 开发环境
+
+macOS 11.6, python 3.9
+
+大体完善估计会进Docker修缮
+
 # 坑 / Todo
 
 - `PyModule_GetDef`涉及到结构体转换, 目前搁置

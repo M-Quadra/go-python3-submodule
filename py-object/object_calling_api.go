@@ -35,6 +35,10 @@ func CallOneArg(callable, arg *python.PyObject) *python.PyObject {
 
 // CallObject PyObject_CallObject
 func CallObject(callable, args *python.PyObject) *python.PyObject {
+	if callable == nil {
+		return nil
+	}
+
 	return toObject(C.PyObject_CallObject(toC(callable), toC(args)))
 }
 
