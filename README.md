@@ -10,7 +10,7 @@ Go -> C API -> Python3, submodule style
 
 # 开发环境
 
-macOS 11.6, python 3.9
+macOS 12.0, python 3.9
 
 大体完善估计会进Docker修缮
 
