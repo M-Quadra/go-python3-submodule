@@ -16,6 +16,8 @@ macOS 12.0, python 3.9
 
 # 坑 / Todo
 
-- `PyModule_GetDef`涉及到结构体转换, 目前搁置
+- `PyModule_GetDef`涉及到结构体转换, 目前搁置。
 
 - `pyimport.ImportModuleLevelObject`与某些方法存在冲突, 无法保证整体通过`go test`。目前优先保证方法可以独立调用, 后续再处理。
+
+- `Py_Main`调用卡死, 先注释掉, 随缘解决。
