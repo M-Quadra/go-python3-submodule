@@ -12,11 +12,19 @@ import python "github.com/M-Quadra/go-python3-submodule"
 
 // Check PyUnicode_Check
 func Check(o *python.PyObject) bool {
+	if o == nil {
+		return false
+	}
+
 	return C.cgo_PyUnicode_Check(toC(o)) != 0
 }
 
 // CheckExact PyUnicode_CheckExact
 func CheckExact(o *python.PyObject) bool {
+	if o == nil {
+		return false
+	}
+
 	return C.cgo_PyUnicode_CheckExact(toC(o)) != 0
 }
 
