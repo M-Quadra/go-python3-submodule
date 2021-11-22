@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 
@@ -12,6 +13,8 @@ import (
 )
 
 func TestPyTupleCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pytuple.Check(nil)
 	pytuple.CheckExact(nil)
 
@@ -27,12 +30,16 @@ func TestPyTupleCheck(t *testing.T) {
 }
 
 func TestPyTupleNew(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	tuple := pytuple.New(0)
 	defer py.DecRef(tuple)
 	assert.NotNil(t, tuple)
 }
 
 func TestPyTupleSize(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Zero(t, pytuple.Size(nil))
 
 	l := rand.Intn(1000)
@@ -43,6 +50,8 @@ func TestPyTupleSize(t *testing.T) {
 }
 
 func TestPyTupleGetItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pytuple.GetItem(nil, 0))
 
 	tuple := pytuple.New(1)
@@ -58,6 +67,8 @@ func TestPyTupleGetItem(t *testing.T) {
 }
 
 func TestPyTupleGetSlice(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pytuple.GetSlice(nil, 0, 0))
 
 	tupleA := pytuple.New(1)
@@ -73,6 +84,8 @@ func TestPyTupleGetSlice(t *testing.T) {
 }
 
 func TestPyTupleSetItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	v := rand.Intn(1000)
 	long := pylong.FromInt(v)
 	defer py.DecRef(long)

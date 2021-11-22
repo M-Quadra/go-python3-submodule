@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"strconv"
 	"testing"
@@ -14,6 +15,8 @@ import (
 )
 
 func TestPyErrNewException(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.NewException("", nil, nil))
 	assert.Nil(t, pyerr.NewException("module.class", nil, nil))
 	pyerr.Clear()
@@ -64,6 +67,8 @@ func TestPyErrNewException(t *testing.T) {
 }
 
 func TestPyErrNewExceptionWithDoc(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.NewExceptionWithDoc("", "", nil, nil))
 	pyerr.Clear()
 

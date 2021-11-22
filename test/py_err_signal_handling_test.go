@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	pyerr "github.com/M-Quadra/go-python3-submodule/py-err"
@@ -9,6 +10,8 @@ import (
 )
 
 func TestPyErrCheckSignals(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 
 	pyerr.SetInterrupt()

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -11,6 +12,8 @@ import (
 )
 
 func TestPyErrClear(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	assert.Nil(t, pyerr.Occurred())
 
@@ -22,6 +25,8 @@ func TestPyErrClear(t *testing.T) {
 }
 
 func TestPyErrPrintEx(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 
 	pyerr.SetNone(pyexc.RuntimeError)
@@ -31,6 +36,8 @@ func TestPyErrPrintEx(t *testing.T) {
 }
 
 func TestPyErrWriteUnraisable(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	pyerr.WriteUnraisable(nil)
 

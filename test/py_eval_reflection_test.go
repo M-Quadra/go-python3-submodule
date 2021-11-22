@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	pycallable "github.com/M-Quadra/go-python3-submodule/py-callable"
@@ -10,6 +11,8 @@ import (
 )
 
 func TestPyEvalGetBuiltins(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	builtinsPy := pyeval.GetBuiltins()
 	assert.NotNil(t, builtinsPy)
 
@@ -18,16 +21,22 @@ func TestPyEvalGetBuiltins(t *testing.T) {
 }
 
 func TestPyEvalGetLocals(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	localsPy := pyeval.GetLocals()
 	assert.Nil(t, localsPy)
 }
 
 func TestPyEvalGetGlobals(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	globalsPy := pyeval.GetGlobals()
 	assert.Nil(t, globalsPy)
 }
 
 func TestPyEvalGetFuncName(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	builtinsPy := pyeval.GetBuiltins()
 	assert.NotNil(t, builtinsPy)
 
@@ -39,6 +48,8 @@ func TestPyEvalGetFuncName(t *testing.T) {
 }
 
 func TestPyEvalGetFuncDesc(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	builtinsPy := pyeval.GetBuiltins()
 	assert.NotNil(t, builtinsPy)
 

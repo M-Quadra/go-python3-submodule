@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 	"unsafe"
@@ -15,6 +16,8 @@ import (
 )
 
 func TestPyDictCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pydict.Check(nil))
 	assert.False(t, pydict.Check(py.None))
 	assert.False(t, pydict.CheckExact(nil))
@@ -32,6 +35,8 @@ func TestPyDictCheck(t *testing.T) {
 	assert.True(t, pydict.CheckExact(dic))
 }
 func TestPyDictProxyNew(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pydict.ProxyNew(nil))
 	assert.Nil(t, pydict.ProxyNew(py.None))
 
@@ -49,6 +54,8 @@ func TestPyDictProxyNew(t *testing.T) {
 }
 
 func TestPyDictClear(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pydict.Clear(nil)
 
 	v := pylong.FromInt(1)
@@ -70,6 +77,8 @@ func TestPyDictClear(t *testing.T) {
 }
 
 func TestPyDictContains(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	dic := pydict.New()
 	defer py.DecRef(dic)
 
@@ -85,6 +94,8 @@ func TestPyDictContains(t *testing.T) {
 }
 
 func TestPyDictCopy(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pydict.Copy(nil))
 
 	dicA := pydict.New()
@@ -103,6 +114,8 @@ func TestPyDictCopy(t *testing.T) {
 }
 
 func TestPyDictSetItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	dic := pydict.New()
 	defer py.DecRef(dic)
 
@@ -117,6 +130,8 @@ func TestPyDictSetItem(t *testing.T) {
 }
 
 func TestPyDictDelItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	dic := pydict.New()
 	defer py.DecRef(dic)
 
@@ -142,6 +157,8 @@ func TestPyDictDelItem(t *testing.T) {
 }
 
 func TestPyDictGetItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	dic := pydict.New()
 	defer py.DecRef(dic)
 
@@ -165,6 +182,8 @@ func TestPyDictGetItem(t *testing.T) {
 }
 
 func TestPyDictSetDefault(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	dic := pydict.New()
 	defer py.DecRef(dic)
 
@@ -185,6 +204,8 @@ func TestPyDictSetDefault(t *testing.T) {
 }
 
 func TestPyDictItems(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pydict.Items(nil))
 
 	dic := pydict.New()
@@ -214,6 +235,8 @@ func TestPyDictItems(t *testing.T) {
 }
 
 func TestPyDictKeys(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pydict.Keys(nil))
 
 	dic := pydict.New()
@@ -234,6 +257,8 @@ func TestPyDictKeys(t *testing.T) {
 }
 
 func TestPyDictValues(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pydict.Values(nil))
 
 	dic := pydict.New()
@@ -254,6 +279,8 @@ func TestPyDictValues(t *testing.T) {
 }
 
 func TestPyDictSize(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, -1, pydict.Size(nil))
 
 	dic := pydict.New()

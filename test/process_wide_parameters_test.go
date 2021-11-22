@@ -12,6 +12,8 @@ import (
 )
 
 func TestPyGetSetProgramName(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	defaultName := py.GetProgramName()
 	assert.Equal(t, "python3", defaultName)
 	defer py.SetProgramName(defaultName)
@@ -25,23 +27,31 @@ func TestPyGetSetProgramName(t *testing.T) {
 }
 
 func TestPyGetPrefix(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	prefix := py.GetPrefix()
 	fmt.Println(prefix)
 	assert.True(t, len(prefix) > 0)
 }
 
 func TestPyGetExecPrefix(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	execPrefix := py.GetExecPrefix()
 	fmt.Println(execPrefix)
 }
 
 func TestPyGetProgramFullPath(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	fullPath := py.GetProgramFullPath()
 	fmt.Println(fullPath)
 	assert.True(t, len(fullPath) > 0)
 }
 
 func TestPyGetSetPath(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	defaultPath := py.GetPath()
 	fmt.Println(defaultPath)
 	defer py.SetPath(defaultPath)
@@ -52,36 +62,48 @@ func TestPyGetSetPath(t *testing.T) {
 }
 
 func TestPyGetVersion(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	version := py.GetVersion()
 	fmt.Println(version)
 	assert.True(t, len(version) > 0)
 }
 
 func TestPyGetPlatform(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	platform := py.GetPlatform()
 	fmt.Println(platform)
 	assert.True(t, len(platform) > 0)
 }
 
 func TestPyGetCopyright(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	copyright := py.GetCopyright()
 	fmt.Println(copyright)
 	assert.True(t, len(copyright) > 0)
 }
 
 func TestPyGetCompiler(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	compiler := py.GetCompiler()
 	fmt.Println(compiler)
 	assert.True(t, len(compiler) > 0)
 }
 
 func TestPyGetBuildInfo(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	buildInfo := py.GetBuildInfo()
 	fmt.Println(buildInfo)
 	assert.True(t, len(buildInfo) > 0)
 }
 
 func TestPySysSetArgvEx(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pysys.SetArgvEx(false, "test.py")
 
 	argv := pysys.GetObject("argv")
@@ -90,6 +112,8 @@ func TestPySysSetArgvEx(t *testing.T) {
 }
 
 func TestPySysSetArgv(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pysys.SetArgv("test.py")
 
 	argv := pysys.GetObject("argv")
@@ -98,6 +122,8 @@ func TestPySysSetArgv(t *testing.T) {
 }
 
 func TestPyGetSetPythonHome(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	defaultHome := py.GetPythonHome()
 	defer py.SetPythonHome(defaultHome)
 

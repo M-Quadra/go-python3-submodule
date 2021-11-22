@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -10,6 +11,8 @@ import (
 )
 
 func TestPyBoolCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pybool.Check(nil))
 
 	list := pylist.New(1)
@@ -18,6 +21,7 @@ func TestPyBoolCheck(t *testing.T) {
 }
 
 func TestPyBoolFromLong(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
 
 	tPy := pybool.FromInt(1)
 	defer py.DecRef(tPy)

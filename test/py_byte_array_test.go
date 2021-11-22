@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 	"unsafe"
 
@@ -10,6 +11,8 @@ import (
 )
 
 func TestPyByteArrayCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pybytearray.Check(nil))
 	assert.False(t, pybytearray.CheckExact(nil))
 
@@ -21,6 +24,8 @@ func TestPyByteArrayCheck(t *testing.T) {
 }
 
 func TestPyByteArrayFromString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	str := "鹰语"
 
 	ary := pybytearray.FromString(str)
@@ -30,6 +35,8 @@ func TestPyByteArrayFromString(t *testing.T) {
 }
 
 func TestPyByteArrayConcat(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pybytearray.Concat(nil, nil))
 
 	strA := "坎"
@@ -58,6 +65,8 @@ func TestPyByteArrayConcat(t *testing.T) {
 }
 
 func TestPyByteArrayResize(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pybytearray.Resize(nil, 0)
 
 	str := "对A"

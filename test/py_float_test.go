@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"math/rand"
 	"strconv"
@@ -14,6 +15,8 @@ import (
 )
 
 func TestPyFloatCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pyfloat.Check(nil))
 
 	f := pyfloat.FromFloat64(rand.Float64())
@@ -28,6 +31,8 @@ func TestPyFloatCheck(t *testing.T) {
 }
 
 func TestPyFloatFromString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyfloat.FromStringPy(nil))
 
 	v := rand.Float64()
@@ -45,6 +50,8 @@ func TestPyFloatFromString(t *testing.T) {
 }
 
 func TestPyFloatAsFloat64(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, -1.0, pyfloat.AsFloat64(nil))
 	defer pyerr.Clear()
 
@@ -56,10 +63,14 @@ func TestPyFloatAsFloat64(t *testing.T) {
 }
 
 func TestPyFloatGetInfo(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.NotNil(t, pyfloat.GetInfo())
 }
 
 func TestPyFloatGetMinMax(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.True(t, math.Abs(2.2250738585072014e-308-pyfloat.GetMin()) < 1e8)
 	assert.True(t, math.Abs(math.MaxFloat64-pyfloat.GetMax()) < 1e8)
 }

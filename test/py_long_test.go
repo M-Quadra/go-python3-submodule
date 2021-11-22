@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"math/rand"
 	"strconv"
@@ -13,6 +14,8 @@ import (
 )
 
 func TestPyLongCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylong.Check(nil))
 	assert.False(t, pylong.CheckExact(nil))
 
@@ -24,6 +27,8 @@ func TestPyLongCheck(t *testing.T) {
 }
 
 func TestPyLongFromAsInt(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, -1, pylong.AsInt(nil))
 
 	v := rand.Intn(1000)
@@ -33,6 +38,8 @@ func TestPyLongFromAsInt(t *testing.T) {
 }
 
 func TestPyLongFromAsUint(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, uint(math.MaxUint), pylong.AsUint(nil))
 
 	v := uint(rand.Intn(1000))
@@ -42,6 +49,8 @@ func TestPyLongFromAsUint(t *testing.T) {
 }
 
 func TestPyLongFromAsInt64(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, int64(-1), pylong.AsInt64(nil))
 
 	v := rand.Int63()
@@ -51,6 +60,8 @@ func TestPyLongFromAsInt64(t *testing.T) {
 }
 
 func TestPyLongFromAsUint64(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, uint64(math.MaxUint64), pylong.AsUint64(nil))
 
 	v := rand.Uint64()
@@ -60,6 +71,8 @@ func TestPyLongFromAsUint64(t *testing.T) {
 }
 
 func TestPyLongFromAsFloat64(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, -1.0, pylong.AsFloat64(nil))
 
 	v := 3.14
@@ -69,6 +82,8 @@ func TestPyLongFromAsFloat64(t *testing.T) {
 }
 
 func TestPyLongFromString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	v := rand.Intn(1000)
 	vPy := pylong.FromString(strconv.Itoa(v), 10)
 	defer py.DecRef(vPy)
@@ -76,6 +91,8 @@ func TestPyLongFromString(t *testing.T) {
 }
 
 func TestPyLongFromUnicode(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pylong.FromUnicodeObject(nil, 10))
 
 	v := rand.Intn(1000)

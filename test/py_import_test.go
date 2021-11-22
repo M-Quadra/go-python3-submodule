@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -17,18 +18,24 @@ import (
 )
 
 func TestPyImportImportModule(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	os := pyimport.ImportModule("os")
 	defer py.DecRef(os)
 	assert.NotNil(t, os)
 }
 
 func TestPyImportImportModuleEx(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	os := pyimport.ImportModuleEx("os", nil, nil, nil)
 	defer py.DecRef(os)
 	assert.NotNil(t, os)
 }
 
 func TestPyImportImportModuleLevelObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.ImportModuleLevelObject(nil, nil, nil, nil, 0))
 	pyerr.Clear()
 
@@ -41,12 +48,16 @@ func TestPyImportImportModuleLevelObject(t *testing.T) {
 }
 
 func TestPyImportImportModuleLevel(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	math := pyimport.ImportModuleLevel("math", nil, nil, nil, 0)
 	defer py.DecRef(math)
 	assert.NotNil(t, math)
 }
 
 func TestPyImportImport(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.Import(nil))
 
 	name := pyunicode.FromString("platform")
@@ -58,6 +69,8 @@ func TestPyImportImport(t *testing.T) {
 }
 
 func TestPyImportReloadModule(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.ReloadModule(nil))
 
 	osA := pyimport.ImportModule("os")
@@ -73,6 +86,8 @@ func TestPyImportReloadModule(t *testing.T) {
 }
 
 func TestPyImportAddModule(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.AddModuleObject(nil))
 
 	os := pyimport.ImportModule("os")
@@ -94,6 +109,8 @@ func TestPyImportAddModule(t *testing.T) {
 }
 
 func TestPyImportExecCodeModule(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.ExecCodeModule("", nil))
 
 	// [DataDog/go-python3]: fake module
@@ -121,6 +138,8 @@ func TestPyImportExecCodeModule(t *testing.T) {
 }
 
 func TestPyImportExecCodeModuleEx(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.ExecCodeModuleEx("", nil, ""))
 
 	// [DataDog/go-python3]: fake module
@@ -148,6 +167,8 @@ func TestPyImportExecCodeModuleEx(t *testing.T) {
 }
 
 func TestPyImportExecCodeModuleObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	// [DataDog/go-python3]: fake module
 	source := pyunicode.FromString("__version__ = '2.0'")
 	defer py.DecRef(source)
@@ -189,6 +210,8 @@ func TestPyImportExecCodeModuleObject(t *testing.T) {
 }
 
 func TestPyImportExecCodeModuleWithPathnames(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	// [DataDog/go-python3]: fake module
 	source := pyunicode.FromString("__version__ = '2.0'")
 	defer py.DecRef(source)
@@ -216,20 +239,28 @@ func TestPyImportExecCodeModuleWithPathnames(t *testing.T) {
 }
 
 func TestPyImportGetMagicNumber(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.NotNil(t, pyimport.GetMagicNumber())
 }
 
 func TestPyImportGetMagicTag(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.NotNil(t, pyimport.GetMagicTag())
 }
 
 func TestPyImportGetModuleDict(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	dic := pyimport.GetModuleDict()
 	defer py.DecRef(dic)
 	assert.True(t, pydict.Check(dic))
 }
 
 func TestPyImportGetModule(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyimport.GetModule(nil))
 
 	name := "os"
@@ -245,6 +276,8 @@ func TestPyImportGetModule(t *testing.T) {
 }
 
 func TestPyImportGetImporter(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pathList := pysys.GetObject("path")
 	path := pylist.GetItem(pathList, 0)
 	assert.NotNil(t, path)

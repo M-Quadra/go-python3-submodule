@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -13,11 +14,15 @@ import (
 )
 
 // func TestPyMain(t *testing.T) {
+// 	fmt.Println(assert.CallerInfo()[0])
+
 // 	fmt.Println("???")
 // 	py.Main("test.py")
 // }
 
 func TestPyfunc(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	exitCode := pyrun.AnyFile("test.py")
 	assert.Equal(t, 0, exitCode)
 
@@ -40,6 +45,8 @@ var (
 )
 
 func TestPyRunSimpleString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	exitCode := pyrun.SimpleString(_testPy)
 	assert.Equal(t, 0, exitCode)
 

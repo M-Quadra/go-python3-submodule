@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -11,6 +12,8 @@ import (
 )
 
 func TestPyErrSetString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.Occurred())
 
 	pyerr.SetString(nil, "wtf_0")
@@ -24,6 +27,8 @@ func TestPyErrSetString(t *testing.T) {
 }
 
 func TestPyErrSetObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.SetObject(nil, nil)
 	assert.Nil(t, pyerr.Occurred())
 
@@ -38,6 +43,8 @@ func TestPyErrSetObject(t *testing.T) {
 }
 
 func TestPyErrSetNone(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.Occurred())
 
 	pyerr.SetNone(nil)
@@ -61,6 +68,8 @@ func TestPyErrSetNone(t *testing.T) {
 }
 
 func TestPyErrBadArgument(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.Occurred())
 
 	assert.Equal(t, 0, pyerr.BadArgument())
@@ -71,6 +80,8 @@ func TestPyErrBadArgument(t *testing.T) {
 }
 
 func TestPyErrNoMemory(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.Occurred())
 
 	pyerr.NoMemory()
@@ -81,6 +92,8 @@ func TestPyErrNoMemory(t *testing.T) {
 }
 
 func TestPyErrSetImportError(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.SetImportError(nil, nil, nil))
 	pyerr.Clear()
 
@@ -94,6 +107,8 @@ func TestPyErrSetImportError(t *testing.T) {
 }
 
 func TestPyErrSyntaxLocationObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 
 	pyerr.SyntaxLocationObject(nil, 0, 0)
@@ -116,6 +131,8 @@ func TestPyErrSyntaxLocationObject(t *testing.T) {
 }
 
 func TestPyErrSyntaxLocationEx(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	pyerr.SyntaxLocationEx("", 0, 0)
 
@@ -128,6 +145,8 @@ func TestPyErrSyntaxLocationEx(t *testing.T) {
 }
 
 func TestPyErrSyntaxLocation(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	pyerr.SyntaxLocation("test.py", 0)
 
@@ -140,6 +159,8 @@ func TestPyErrSyntaxLocation(t *testing.T) {
 }
 
 func TestPyErrBadInternalCall(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 
 	pyerr.BadInternalCall()

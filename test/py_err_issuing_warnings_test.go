@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -12,6 +13,8 @@ import (
 )
 
 func TestPyErrWarnEx(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.True(t, pyerr.WarnEx(pyexc.RuntimeWarning, "msg", 1))
 
 	dic := pydict.New()
@@ -20,6 +23,8 @@ func TestPyErrWarnEx(t *testing.T) {
 }
 
 func TestPyErrSetImportErrorSubclass(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyerr.SetImportErrorSubclass(nil, nil, nil, nil))
 	pyerr.Clear()
 
@@ -35,6 +40,8 @@ func TestPyErrSetImportErrorSubclass(t *testing.T) {
 }
 
 func TestPyErrWarnExplicitObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	msg := pyunicode.FromString("msg")
 	defer py.DecRef(msg)
 
@@ -57,6 +64,8 @@ func TestPyErrWarnExplicitObject(t *testing.T) {
 }
 
 func TestPyErrWarnExplicit(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	msg := pyunicode.FromString("msg")
 	defer py.DecRef(msg)
 

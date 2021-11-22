@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -12,6 +13,8 @@ import (
 )
 
 func TestPySysGetSetObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	name := "platform"
 	platformPy := pysys.GetObject(name)
 	assert.True(t, pyunicode.Check(platformPy))
@@ -30,6 +33,8 @@ func TestPySysGetSetObject(t *testing.T) {
 }
 
 func TestPySysWarnOptions(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	warnoptionsPy := pysys.GetObject("warnoptions")
 	assert.Zero(t, pylist.Size(warnoptionsPy))
 
@@ -56,6 +61,8 @@ func TestPySysWarnOptions(t *testing.T) {
 }
 
 func TestPySysSetPath(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pathPy := pysys.GetObject("path")
 	py.IncRef(pathPy)
 
@@ -67,6 +74,8 @@ func TestPySysSetPath(t *testing.T) {
 }
 
 func TestPySysXOption(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pysys.AddXOption("faulthandler")
 
 	xOptionsPy := pysys.GetXOptions()

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"sort"
 	"testing"
@@ -15,6 +16,8 @@ import (
 )
 
 func TestPyListCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylist.Check(nil))
 	assert.False(t, pylist.CheckExact(nil))
 
@@ -28,6 +31,8 @@ func TestPyListCheck(t *testing.T) {
 }
 
 func TestPyListSize(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, 0, pylist.Size(nil))
 
 	l := rand.Intn(1000)
@@ -37,6 +42,8 @@ func TestPyListSize(t *testing.T) {
 }
 
 func TestPyListGetItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pylist.GetItem(nil, 0))
 
 	vRand := rand.Intn(1000)
@@ -50,6 +57,8 @@ func TestPyListGetItem(t *testing.T) {
 }
 
 func TestPyListSetItem(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylist.SetItem(nil, 0, nil))
 
 	list := pylist.New(1)
@@ -60,6 +69,8 @@ func TestPyListSetItem(t *testing.T) {
 }
 
 func TestPyListInsert(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylist.Insert(nil, 0, nil))
 
 	list := pylist.New(0)
@@ -76,6 +87,8 @@ func TestPyListInsert(t *testing.T) {
 }
 
 func TestPyListAppend(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylist.Append(nil, nil))
 
 	list := pylist.New(0)
@@ -92,6 +105,8 @@ func TestPyListAppend(t *testing.T) {
 }
 
 func TestPyListGetSlice(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pylist.GetSlice(nil, 1, 2))
 
 	listA := pylist.New(0)
@@ -118,6 +133,8 @@ func TestPyListGetSlice(t *testing.T) {
 }
 
 func TestPyListSort(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylist.Sort(nil))
 	pyerr.Clear()
 
@@ -138,6 +155,8 @@ func TestPyListSort(t *testing.T) {
 }
 
 func TestPyListReverse(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pylist.Reverse(nil))
 
 	cnt := rand.Intn(1000) + 10
@@ -156,6 +175,8 @@ func TestPyListReverse(t *testing.T) {
 }
 
 func TestPyListAsTuple(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pylist.AsTuple(nil))
 
 	cnt := rand.Intn(1000) + 10

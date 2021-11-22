@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 	"unsafe"
 
@@ -11,6 +12,8 @@ import (
 )
 
 func TestPyBytesCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pybytes.Check(nil))
 	assert.False(t, pybytes.CheckExact(nil))
 
@@ -26,6 +29,8 @@ func TestPyBytesCheck(t *testing.T) {
 }
 
 func TestPyBytesFromString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	str := "hidan"
 	bytes := pybytes.FromString(str)
 	defer py.DecRef(bytes)
@@ -33,6 +38,8 @@ func TestPyBytesFromString(t *testing.T) {
 }
 
 func TestPyBytesSize(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	strA := "no"
 	bytesA := pybytes.FromString(strA)
 	defer py.DecRef(bytesA)
@@ -45,6 +52,8 @@ func TestPyBytesSize(t *testing.T) {
 }
 
 func TestPyBytesConcatAndDel(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	strA := "a"
 	strB := "b"
 

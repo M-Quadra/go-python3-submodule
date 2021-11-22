@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	pyeval "github.com/M-Quadra/go-python3-submodule/py-eval"
@@ -10,12 +11,16 @@ import (
 )
 
 func TestPyEvalInitThreads(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyeval.InitThreads()
 	assert.True(t, pyeval.ThreadsInitialized())
 	pyeval.InitThreads()
 }
 
 func TestPyGILState(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyeval.InitThreads()
 	gil := pygilstate.Ensure()
 	assert.True(t, pygilstate.Check())
@@ -23,6 +28,8 @@ func TestPyGILState(t *testing.T) {
 }
 
 func TestPyThreadState(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyeval.InitThreads()
 
 	threadStateA := pygilstate.GetThisThreadState()
@@ -34,6 +41,8 @@ func TestPyThreadState(t *testing.T) {
 }
 
 func TestPyEvalSaveRestoreThread(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyeval.InitThreads()
 
 	threadState := pyeval.SaveThread()

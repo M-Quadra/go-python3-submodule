@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -12,6 +13,8 @@ import (
 )
 
 func TestPyUnicodeCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pyunicode.Check(nil))
 	assert.False(t, pyunicode.CheckExact(nil))
 
@@ -27,6 +30,8 @@ func TestPyUnicodeCheck(t *testing.T) {
 }
 
 func TestPyUnicodeNew(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyunicode.New(-1, 'z'))
 
 	u := pyunicode.New(11, 'z')
@@ -35,12 +40,16 @@ func TestPyUnicodeNew(t *testing.T) {
 }
 
 func TestPyUnicodeFromString(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	u := pyunicode.FromString("AA")
 	defer py.DecRef(u)
 	assert.Equal(t, "AA", pyunicode.AsString(u))
 }
 
 func TestPyUnicodeFromEncodedObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pyunicode.FromEncodedObject(nil, "utf-8", "strict"))
 
 	str := "HiHi"
@@ -53,6 +62,8 @@ func TestPyUnicodeFromEncodedObject(t *testing.T) {
 }
 
 func TestPyUnicodeGetLength(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, 0, pyunicode.GetLength(nil))
 
 	u := pyunicode.FromString("刃无锋")
@@ -61,6 +72,8 @@ func TestPyUnicodeGetLength(t *testing.T) {
 }
 
 func TestPyUnicodeCopyCharacters(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	defer pyerr.Clear()
 
 	uA := pyunicode.FromString("QB鸦")
@@ -78,6 +91,8 @@ func TestPyUnicodeCopyCharacters(t *testing.T) {
 }
 
 func TestPyUnicodeFill(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	u := pyunicode.FromString("aaa")
 	defer py.DecRef(u)
 
@@ -92,6 +107,8 @@ func TestPyUnicodeFill(t *testing.T) {
 }
 
 func TestPyUnicodeWriteReadChar(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	u := pyunicode.FromString("aaa")
 	defer py.DecRef(u)
 
@@ -114,6 +131,8 @@ func TestPyUnicodeWriteReadChar(t *testing.T) {
 }
 
 func TestPyUnicodeSubstring(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	uA := pyunicode.FromString("SF")
 	defer py.DecRef(uA)
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -13,6 +14,8 @@ import (
 )
 
 func TestPyModuleCheck(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.False(t, pymodule.Check(nil))
 	assert.False(t, pymodule.CheckExact(nil))
 
@@ -23,6 +26,8 @@ func TestPyModuleCheck(t *testing.T) {
 }
 
 func TestPyModuleNewObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pymodule.NewObject(nil))
 
 	namePy := pyunicode.FromString("test_module")
@@ -35,12 +40,16 @@ func TestPyModuleNewObject(t *testing.T) {
 }
 
 func TestPyModuleNew(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	modelPy := pymodule.New("test_module")
 	defer py.DecRef(modelPy)
 	assert.NotNil(t, modelPy)
 }
 
 func TestPyModuleGetDict(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pymodule.GetDict(nil))
 
 	name := "sys"
@@ -55,7 +64,10 @@ func TestPyModuleGetDict(t *testing.T) {
 	dicPy := pymodule.GetDict(sysPy)
 	assert.True(t, pydict.Check(dicPy))
 }
+
 func TestPyModuleGetNameObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pymodule.GetNameObject(nil))
 
 	name := "sys"
@@ -68,6 +80,8 @@ func TestPyModuleGetNameObject(t *testing.T) {
 }
 
 func TestPyModuleGetName(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Equal(t, "", pymodule.GetName(nil))
 
 	name := "sys"
@@ -79,6 +93,8 @@ func TestPyModuleGetName(t *testing.T) {
 }
 
 func TestPyModuleGetState(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.True(t, pymodule.GetState(nil) == nil)
 
 	sysPy := pyimport.ImportModule("sys")
@@ -89,6 +105,8 @@ func TestPyModuleGetState(t *testing.T) {
 }
 
 func TestPyModuleGetFilenameObject(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Nil(t, pymodule.GetFilenameObject(nil))
 
 	testPy := pyimport.ImportModule("test")
@@ -102,6 +120,8 @@ func TestPyModuleGetFilenameObject(t *testing.T) {
 }
 
 func TestPyModuleGetFilename(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pymodule.GetFilename(nil)
 
 	testPy := pyimport.ImportModule("test")

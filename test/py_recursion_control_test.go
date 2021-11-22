@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -9,11 +10,15 @@ import (
 )
 
 func TestPyRecursiveCall(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.Zero(t, py.EnterRecursiveCall("in test function"))
 	py.LeaveRecursiveCall()
 }
 
 func TestPyRepr(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	strPy := pyunicode.FromString("hello world")
 	defer py.DecRef(strPy)
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
@@ -12,6 +13,8 @@ import (
 )
 
 func TestPyErrOccurred(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	assert.Nil(t, pyerr.Occurred())
 
@@ -22,6 +25,8 @@ func TestPyErrOccurred(t *testing.T) {
 }
 
 func TestPyErrExceptionMatches(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	assert.False(t, pyerr.ExceptionMatches(nil))
 
@@ -32,11 +37,15 @@ func TestPyErrExceptionMatches(t *testing.T) {
 }
 
 func TestPyErrGivenExceptionMatches(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	assert.True(t, pyerr.GivenExceptionMatches(pyexc.RuntimeError, pyexc.RuntimeError))
 	assert.False(t, pyerr.GivenExceptionMatches(pyexc.RuntimeError, pyexc.ArithmeticError))
 }
 
 func TestPyErrFetchRestore(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 	exc, value, traceback := pyerr.Fetch()
 	assert.Nil(t, exc)
@@ -59,6 +68,8 @@ func TestPyErrFetchRestore(t *testing.T) {
 }
 
 func TestPyErrNormalizeException(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 
 	pyerr.SetNone(pyexc.RuntimeError)
@@ -88,6 +99,8 @@ func TestPyErrNormalizeException(t *testing.T) {
 }
 
 func TestPyErrGetSetExcInfo(t *testing.T) {
+	fmt.Println(assert.CallerInfo()[0])
+
 	pyerr.Clear()
 
 	pyerr.SetNone(pyexc.BufferError)
