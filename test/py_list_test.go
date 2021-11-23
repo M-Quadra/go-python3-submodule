@@ -47,12 +47,10 @@ func TestPyListGetItem(t *testing.T) {
 	assert.Nil(t, pylist.GetItem(nil, 0))
 
 	vRand := rand.Intn(1000)
-	v := pylong.FromInt(vRand)
-	defer py.DecRef(v)
 
 	list := pylist.New(1)
 	defer py.DecRef(list)
-	assert.True(t, pylist.SetItem(list, 0, v))
+	assert.True(t, pylist.SetItem(list, 0, pylong.FromInt(vRand)))
 	assert.Equal(t, vRand, pylong.AsInt(pylist.GetItem(list, 0)))
 }
 
@@ -79,9 +77,7 @@ func TestPyListInsert(t *testing.T) {
 	assert.Equal(t, 0, pylist.Size(list))
 
 	vRand := rand.Intn(1000)
-	v := pylong.FromInt(vRand)
-	defer py.DecRef(v)
-	assert.True(t, pylist.Insert(list, 0, v))
+	assert.True(t, pylist.Insert(list, 0, pylong.FromInt(vRand)))
 	assert.Equal(t, 1, pylist.Size(list))
 	assert.Equal(t, vRand, pylong.AsInt(pylist.GetItem(list, 0)))
 }
@@ -97,9 +93,7 @@ func TestPyListAppend(t *testing.T) {
 	assert.Equal(t, 0, pylist.Size(list))
 
 	vRand := rand.Intn(1000)
-	v := pylong.FromInt(vRand)
-	defer py.DecRef(v)
-	assert.True(t, pylist.Append(list, v))
+	assert.True(t, pylist.Append(list, pylong.FromInt(vRand)))
 	assert.Equal(t, 1, pylist.Size(list))
 	assert.Equal(t, vRand, pylong.AsInt(pylist.GetItem(list, 0)))
 }
@@ -113,12 +107,8 @@ func TestPyListGetSlice(t *testing.T) {
 	defer py.DecRef(listA)
 
 	vRand := rand.Intn(1000)
-	vA := pylong.FromInt(vRand)
-	defer py.DecRef(vA)
-	vB := pylong.FromInt(vRand + 1)
-	defer py.DecRef(vB)
-	assert.True(t, pylist.Append(listA, vA))
-	assert.True(t, pylist.Append(listA, vB))
+	assert.True(t, pylist.Append(listA, pylong.FromInt(vRand)))
+	assert.True(t, pylist.Append(listA, pylong.FromInt(vRand+1)))
 
 	listB := pylist.GetSlice(listA, 1, 2)
 	defer py.DecRef(listB)
