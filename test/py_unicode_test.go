@@ -33,6 +33,7 @@ func TestPyUnicodeNew(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	assert.Nil(t, pyunicode.New(-1, 'z'))
+	pyerr.Clear()
 
 	u := pyunicode.New(11, 'z')
 	defer py.DecRef(u)
@@ -51,6 +52,7 @@ func TestPyUnicodeFromEncodedObject(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	assert.Nil(t, pyunicode.FromEncodedObject(nil, "utf-8", "strict"))
+	pyerr.Clear()
 
 	str := "HiHi"
 	b := pybytes.FromString(str)
@@ -145,5 +147,6 @@ func TestPyUnicodeSubstring(t *testing.T) {
 	assert.Equal(t, "F", pyunicode.AsString(uC))
 
 	assert.Nil(t, pyunicode.Substring(uA, 1, -1))
+	pyerr.Clear()
 	assert.Nil(t, pyunicode.Substring(nil, 1, 2))
 }
