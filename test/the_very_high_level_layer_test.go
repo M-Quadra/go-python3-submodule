@@ -23,7 +23,12 @@ import (
 func TestPyfunc(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	exitCode := pyrun.AnyFile("test.py")
+	exitCode, err := pyrun.AnyFile("test_233.py")
+	assert.NotNil(t, err)
+	assert.Equal(t, -1, exitCode)
+
+	exitCode, err = pyrun.AnyFile("test.py")
+	assert.Nil(t, err)
 	assert.Equal(t, 0, exitCode)
 
 	stdout := pysys.GetObject("stdout")

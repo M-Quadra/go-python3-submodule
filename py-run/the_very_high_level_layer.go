@@ -10,20 +10,23 @@ import (
 import "unsafe"
 
 // AnyFile PyRun_AnyFile
-func AnyFile(filename string) int {
+func AnyFile(filename string) (int, error) {
 	filenameC := C.CString(filename)
 	defer C.free(unsafe.Pointer(filenameC))
 
 	mode := C.CString("r")
 	defer C.free(unsafe.Pointer(mode))
 
-	fileC, err := C.fopen(filenameC, mode)
+	fpC, err := C.fopen(filenameC, mode)
 	if err != nil {
-		return -1
+		return -1, err
 	}
-	defer C.fclose(fileC)
+	if fpC == nil {
+		return -1, nil
+	}
+	defer C.fclose(fpC)
 
-	return int(C.PyRun_AnyFile(fileC, filenameC))
+	return int(C.PyRun_AnyFile(fpC, filenameC)), nil
 }
 
 // PyRun_AnyFileFlags
