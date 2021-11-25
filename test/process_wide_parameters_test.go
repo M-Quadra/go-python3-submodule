@@ -53,7 +53,6 @@ func TestPyGetSetPath(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	defaultPath := py.GetPath()
-	fmt.Println(defaultPath)
 	defer py.SetPath(defaultPath)
 
 	name := "påth"
@@ -104,6 +103,17 @@ func TestPyGetBuildInfo(t *testing.T) {
 func TestPySysSetArgvEx(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
+	{ // argv recovery
+		argv := pysys.GetObject("argv")
+		assert.Equal(t, 1, pylist.Size(argv))
+		assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+		defer func() {
+			pysys.SetArgvEx(false)
+			assert.Equal(t, 1, pylist.Size(argv))
+			assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+		}()
+	}
+
 	pysys.SetArgvEx(false, "test.py")
 
 	argv := pysys.GetObject("argv")
@@ -113,6 +123,26 @@ func TestPySysSetArgvEx(t *testing.T) {
 
 func TestPySysSetArgv(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
+
+	{ // path recovery
+		path := pysys.GetObject("path")
+		oldPath := pylist.New(pylist.Size(path))
+		assert.True(t, pylist.SetSlice(oldPath, 0, pylist.Size(path), path))
+		defer func() {
+			assert.True(t, pysys.SetObject("path", oldPath))
+		}()
+	}
+
+	{ // argv recovery
+		argv := pysys.GetObject("argv")
+		assert.Equal(t, 1, pylist.Size(argv))
+		assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+		defer func() {
+			pysys.SetArgv()
+			assert.Equal(t, 1, pylist.Size(argv))
+			assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+		}()
+	}
 
 	pysys.SetArgv("test.py")
 
