@@ -21,7 +21,7 @@ func TestPyTypeCheck(t *testing.T) {
 func TestPyTypeClearCache(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	assert.Equal(t, uint(0xab), pytype.ClearCache())
+	assert.NotEqual(t, uint(0xffffffff), pytype.ClearCache())
 	assert.Equal(t, uint(0xffffffff), pytype.ClearCache())
 	assert.Equal(t, uint(0xffffffff), pytype.ClearCache())
 }
