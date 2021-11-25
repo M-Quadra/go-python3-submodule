@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/M-Quadra/go-python3-submodule/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/py-err"
 	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
 	pylong "github.com/M-Quadra/go-python3-submodule/py-long"
 	pytuple "github.com/M-Quadra/go-python3-submodule/py-tuple"
@@ -57,12 +58,11 @@ func TestPyTupleGetItem(t *testing.T) {
 	tuple := pytuple.New(1)
 	defer py.DecRef(tuple)
 	assert.Nil(t, pytuple.GetItem(tuple, -1))
+	pyerr.Clear()
 
 	v := rand.Intn(1000)
-	long := pylong.FromInt(v)
-	defer py.DecRef(long)
+	assert.True(t, pytuple.SetItem(tuple, 0, pylong.FromInt(v)))
 
-	assert.True(t, pytuple.SetItem(tuple, 0, long))
 	assert.Equal(t, v, pylong.AsInt(pytuple.GetItem(tuple, 0)))
 }
 
@@ -70,6 +70,7 @@ func TestPyTupleGetSlice(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	assert.Nil(t, pytuple.GetSlice(nil, 0, 0))
+	pyerr.Clear()
 
 	tupleA := pytuple.New(1)
 	defer py.DecRef(tupleA)
@@ -88,16 +89,17 @@ func TestPyTupleSetItem(t *testing.T) {
 
 	v := rand.Intn(1000)
 	long := pylong.FromInt(v)
-	defer py.DecRef(long)
-
 	assert.False(t, pytuple.SetItem(nil, 0, long))
 
 	tuple := pytuple.New(1)
 	defer py.DecRef(tuple)
 
 	assert.True(t, pytuple.SetItem(tuple, 0, nil))
-	assert.False(t, pytuple.SetItem(tuple, -1, long))
-	assert.True(t, pytuple.SetItem(tuple, 0, long))
 
+	py.IncRef(long) // It' ll decref reference count of 'long' even SetItem was false.
+	assert.False(t, pytuple.SetItem(tuple, -1, long))
+	pyerr.Clear()
+
+	assert.True(t, pytuple.SetItem(tuple, 0, long))
 	assert.Equal(t, v, pylong.AsInt(pytuple.GetItem(tuple, 0)))
 }
