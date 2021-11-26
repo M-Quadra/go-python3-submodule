@@ -2,7 +2,7 @@
 
 Go -> C API -> Python3, submodule style
 
-此物源自另一个<del>有生之年</del>工程的拆分, 尝试将[DataDog/go-python3](https://github.com/DataDog/go-python3)改造更加面向对象与强类型未果, 记录合久必分, 分久必合, 反复折腾后只余构建速度催人泪下。
+此物源自另一个<del>有生之年</del>工程的拆分, 尝试将[DataDog/go-python3](https://github.com/DataDog/go-python3)改造更加面向对象与强类型未果, 经历合久必分, 分久必合, 反复折腾后只余构建速度催人泪下。
 
 > 阿库娅大人说: "阿库西斯教徒都是努力的人, 就算失败了也是世界的错！遇到困难先跑路, 大不了弃坑。"
 > 
