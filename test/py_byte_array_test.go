@@ -16,11 +16,12 @@ func TestPyByteArrayCheck(t *testing.T) {
 	assert.False(t, pybytearray.Check(nil))
 	assert.False(t, pybytearray.CheckExact(nil))
 
-	ary := pybytearray.FromString("身落红尘心已死")
-	defer py.DecRef(ary)
+	arr := pybytearray.FromString("身落红尘心已死")
+	defer py.DecRef(arr)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arr)) }()
 
-	assert.True(t, pybytearray.Check(ary))
-	assert.True(t, pybytearray.CheckExact(ary))
+	assert.True(t, pybytearray.Check(arr))
+	assert.True(t, pybytearray.CheckExact(arr))
 }
 
 func TestPyByteArrayFromString(t *testing.T) {
@@ -28,10 +29,11 @@ func TestPyByteArrayFromString(t *testing.T) {
 
 	str := "鹰语"
 
-	ary := pybytearray.FromString(str)
-	defer py.DecRef(ary)
+	arr := pybytearray.FromString(str)
+	defer py.DecRef(arr)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arr)) }()
 
-	assert.Equal(t, str, pybytearray.AsString(ary))
+	assert.Equal(t, str, pybytearray.AsString(arr))
 }
 
 func TestPyByteArrayConcat(t *testing.T) {
@@ -40,28 +42,36 @@ func TestPyByteArrayConcat(t *testing.T) {
 	assert.Nil(t, pybytearray.Concat(nil, nil))
 
 	strA := "坎"
-	aryA := pybytearray.FromString(strA)
-	defer py.DecRef(aryA)
+	arrA := pybytearray.FromString(strA)
+	defer py.DecRef(arrA)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arrA)) }()
 
-	aryA0 := pybytearray.Concat(aryA, nil)
-	defer py.DecRef(aryA0)
-	assert.NotEqual(t, unsafe.Pointer(aryA), unsafe.Pointer(aryA0))
-	assert.Equal(t, strA, pybytearray.AsString(aryA0))
+	arrA0 := pybytearray.Concat(arrA, nil)
+	defer py.DecRef(arrA0)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arrA0)) }()
 
-	aryA1 := pybytearray.Concat(nil, aryA)
-	defer py.DecRef(aryA1)
-	assert.NotEqual(t, unsafe.Pointer(aryA), unsafe.Pointer(aryA1))
-	assert.Equal(t, strA, pybytearray.AsString(aryA1))
+	assert.NotEqual(t, unsafe.Pointer(arrA), unsafe.Pointer(arrA0))
+	assert.Equal(t, strA, pybytearray.AsString(arrA0))
+
+	arrA1 := pybytearray.Concat(nil, arrA)
+	defer py.DecRef(arrA1)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arrA1)) }()
+
+	assert.NotEqual(t, unsafe.Pointer(arrA), unsafe.Pointer(arrA1))
+	assert.Equal(t, strA, pybytearray.AsString(arrA1))
 
 	strB := "离"
-	aryB := pybytearray.FromString(strB)
-	defer py.DecRef(aryB)
+	arrB := pybytearray.FromString(strB)
+	defer py.DecRef(arrB)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arrB)) }()
 
-	aryAB := pybytearray.Concat(aryA, aryB)
-	defer py.DecRef(aryAB)
-	assert.NotEqual(t, unsafe.Pointer(aryA), unsafe.Pointer(aryAB))
-	assert.NotEqual(t, unsafe.Pointer(aryB), unsafe.Pointer(aryAB))
-	assert.Equal(t, strA+strB, pybytearray.AsString(aryAB))
+	arrAB := pybytearray.Concat(arrA, arrB)
+	defer py.DecRef(arrAB)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arrAB)) }()
+
+	assert.NotEqual(t, unsafe.Pointer(arrA), unsafe.Pointer(arrAB))
+	assert.NotEqual(t, unsafe.Pointer(arrB), unsafe.Pointer(arrAB))
+	assert.Equal(t, strA+strB, pybytearray.AsString(arrAB))
 }
 
 func TestPyByteArrayResize(t *testing.T) {
@@ -70,10 +80,13 @@ func TestPyByteArrayResize(t *testing.T) {
 	pybytearray.Resize(nil, 0)
 
 	str := "对A"
-	ary := pybytearray.FromString(str)
-	defer py.DecRef(ary)
-	assert.Zero(t, pybytearray.Resize(ary, len("对")))
-	assert.Equal(t, "对", pybytearray.AsString(ary))
+	arr := pybytearray.FromString(str)
+	defer py.DecRef(arr)
+	defer func() { assert.Equal(t, 1, py.RefCnt(arr)) }()
 
-	// assert.Zero(t, pybytearray.Resize(ary, -1))
+	assert.Zero(t, pybytearray.Resize(arr, len("对")))
+	assert.Equal(t, "对", pybytearray.AsString(arr))
+
+	// assert.Zero(t, pybytearray.Resize(arr, -1))
+	// assert.Equal(t, -1, pybytearray.Size(arr))
 }

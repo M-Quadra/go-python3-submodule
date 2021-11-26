@@ -24,11 +24,14 @@ func TestPyComplexCheck(t *testing.T) {
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
+	defer func() { assert.Equal(t, 1, py.RefCnt(list)) }()
+
 	assert.False(t, pycomplex.Check(list))
 	assert.False(t, pycomplex.CheckExact(list))
 
 	v := pycomplex.FromFloat64s(float64(rand.Intn(1000)), float64(rand.Intn(1000)))
 	defer py.DecRef(v)
+	defer func() { assert.Equal(t, 1, py.RefCnt(v)) }()
 
 	assert.True(t, pycomplex.Check(v))
 	assert.True(t, pycomplex.CheckExact(v))
@@ -42,18 +45,27 @@ func TestPyComplexFrom(t *testing.T) {
 
 	complexTest := pyimport.ImportModule("py_complex_test")
 	defer py.DecRef(complexTest)
+	complexTestRefCnt := py.RefCnt(complexTest)
+	defer func() { assert.Equal(t, complexTestRefCnt, py.RefCnt(complexTest)) }()
 
 	funcPy := pyobject.GetAttrString(complexTest, "multiply")
 	defer py.DecRef(funcPy)
+	funcPyRefCnt := py.RefCnt(funcPy)
+	defer func() { assert.Equal(t, funcPyRefCnt, py.RefCnt(funcPy)) }()
+
 	assert.True(t, pycallable.Check(funcPy))
 
 	vA := pycomplex.FromFloat64s(0, 1)
+	defer func() { assert.Equal(t, 0, py.RefCnt(vA)) }()
 	vB := pycomplex.FromFloat64s(0, 1)
+	defer func() { assert.Equal(t, 0, py.RefCnt(vA)) }()
 	args := pytuple.FromObjects(vA, vB)
 	defer py.DecRef(args)
+	defer func() { assert.Equal(t, 1, py.RefCnt(args)) }()
 
 	result := pyobject.CallObject(funcPy, args)
 	defer py.DecRef(result)
+	defer func() { assert.Equal(t, 1, py.RefCnt(result)) }()
 
 	assert.True(t, math.Abs(pycomplex.RealAsFloat64(result)+1) < 1e-8)
 }

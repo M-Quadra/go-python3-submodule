@@ -22,6 +22,9 @@ func TestPyImportImportModule(t *testing.T) {
 
 	os := pyimport.ImportModule("os")
 	defer py.DecRef(os)
+	osRefCnt := py.RefCnt(os)
+	defer func() { assert.Equal(t, osRefCnt, py.RefCnt(os)) }()
+
 	assert.NotNil(t, os)
 }
 
@@ -30,6 +33,9 @@ func TestPyImportImportModuleEx(t *testing.T) {
 
 	os := pyimport.ImportModuleEx("os", nil, nil, nil)
 	defer py.DecRef(os)
+	osRefCnt := py.RefCnt(os)
+	defer func() { assert.Equal(t, osRefCnt, py.RefCnt(os)) }()
+
 	assert.NotNil(t, os)
 }
 
@@ -44,6 +50,9 @@ func TestPyImportImportModuleLevelObject(t *testing.T) {
 
 	math := pyimport.ImportModuleLevelObject(name, nil, nil, nil, 0)
 	defer py.DecRef(math)
+	mathRefCnt := py.RefCnt(math)
+	defer func() { assert.Equal(t, mathRefCnt, py.RefCnt(math)) }()
+
 	assert.NotNil(t, math)
 }
 
@@ -52,6 +61,9 @@ func TestPyImportImportModuleLevel(t *testing.T) {
 
 	math := pyimport.ImportModuleLevel("math", nil, nil, nil, 0)
 	defer py.DecRef(math)
+	mathRefCnt := py.RefCnt(math)
+	defer func() { assert.Equal(t, mathRefCnt, py.RefCnt(math)) }()
+
 	assert.NotNil(t, math)
 }
 
@@ -65,6 +77,9 @@ func TestPyImportImport(t *testing.T) {
 
 	platform := pyimport.Import(name)
 	defer py.DecRef(platform)
+	platformRefCnt := py.RefCnt(platform)
+	defer func() { assert.Equal(t, platformRefCnt, py.RefCnt(platform)) }()
+
 	assert.NotNil(t, platform)
 }
 
@@ -75,10 +90,14 @@ func TestPyImportReloadModule(t *testing.T) {
 
 	osA := pyimport.ImportModule("os")
 	defer py.DecRef(osA)
+	osARefCnt := py.RefCnt(osA)
+	defer func() { assert.Equal(t, osARefCnt, py.RefCnt(osA)) }()
 	assert.NotNil(t, osA)
 
 	osB := pyimport.ReloadModule(osA)
 	defer py.DecRef(osB)
+	osBRefCnt := py.RefCnt(osB)
+	defer func() { assert.Equal(t, osBRefCnt, py.RefCnt(osB)) }()
 	assert.NotNil(t, osB)
 
 	// [DataDog/go-python3]: PyImport_ReloadModule return a new reference, pointer should be the same
@@ -92,20 +111,28 @@ func TestPyImportAddModule(t *testing.T) {
 
 	os := pyimport.ImportModule("os")
 	defer py.DecRef(os)
+	osRefCnt := py.RefCnt(os)
+	defer func() { assert.Equal(t, osRefCnt, py.RefCnt(os)) }()
 	assert.NotNil(t, os)
 
 	name := "os.new"
 	newA := pyimport.AddModule(name)
-	defer py.DecRef(newA)
+	newARefCnt := py.RefCnt(newA)
+	defer func() { assert.Equal(t, newARefCnt, py.RefCnt(newA)) }()
 	assert.NotNil(t, newA)
 
 	nameUnicode := pyunicode.FromString(name)
 	defer py.DecRef(nameUnicode)
+	nameUnicodeRefCnt := py.RefCnt(nameUnicode)
+	defer func() { assert.Equal(t, nameUnicodeRefCnt, py.RefCnt(nameUnicode)) }()
 	assert.NotNil(t, nameUnicode)
 
 	newB := pyimport.AddModuleObject(nameUnicode)
-	defer py.DecRef(newB)
+	newBRefCnt := py.RefCnt(newB)
+	defer func() { assert.Equal(t, newBRefCnt, py.RefCnt(newB)) }()
+
 	assert.NotNil(t, newB)
+	assert.Equal(t, newA, newB)
 }
 
 func TestPyImportExecCodeModule(t *testing.T) {
@@ -130,6 +157,7 @@ func TestPyImportExecCodeModule(t *testing.T) {
 
 	code := pyobject.CallFunctionObjArgs(compile, source, filename, mode)
 	defer py.DecRef(code)
+	defer func() { assert.Equal(t, 1, py.RefCnt(code)) }()
 	assert.NotNil(t, code)
 
 	module := pyimport.ExecCodeModule("test_module", code)
@@ -159,6 +187,7 @@ func TestPyImportExecCodeModuleEx(t *testing.T) {
 
 	code := pyobject.CallFunctionObjArgs(compile, source, filename, mode)
 	defer py.DecRef(code)
+	defer func() { assert.Equal(t, 1, py.RefCnt(code)) }()
 	assert.NotNil(t, code)
 
 	module := pyimport.ExecCodeModuleEx("test_module", code, "test_module.py")
@@ -186,6 +215,7 @@ func TestPyImportExecCodeModuleObject(t *testing.T) {
 
 	code := pyobject.CallFunctionObjArgs(compile, source, filename, mode)
 	defer py.DecRef(code)
+	defer func() { assert.Equal(t, 1, py.RefCnt(code)) }()
 	assert.NotNil(t, code)
 
 	modulename := pyunicode.FromString("test_module")
@@ -193,6 +223,8 @@ func TestPyImportExecCodeModuleObject(t *testing.T) {
 
 	module := pyimport.ExecCodeModuleObject(modulename, code, filename, filename)
 	defer py.DecRef(module)
+	moduleRefCnt := py.RefCnt(module)
+	defer func() { assert.Equal(t, moduleRefCnt, py.RefCnt(module)) }()
 	assert.NotNil(t, module)
 
 	{ // nil
@@ -201,11 +233,13 @@ func TestPyImportExecCodeModuleObject(t *testing.T) {
 
 		moduleA := pyimport.ExecCodeModuleObject(modulename, code, nil, filename)
 		defer py.DecRef(moduleA)
-		assert.NotNil(t, moduleA)
+		moduleARefCnt := py.RefCnt(moduleA)
+		assert.Equal(t, moduleRefCnt+1, moduleARefCnt)
 
 		moduleB := pyimport.ExecCodeModuleObject(modulename, code, filename, nil)
 		defer py.DecRef(moduleB)
-		assert.NotNil(t, moduleB)
+		moduleBRefCnt := py.RefCnt(moduleB)
+		assert.Equal(t, moduleARefCnt+1, moduleBRefCnt)
 	}
 }
 
@@ -229,6 +263,7 @@ func TestPyImportExecCodeModuleWithPathnames(t *testing.T) {
 
 	code := pyobject.CallFunctionObjArgs(compile, source, filename, mode)
 	defer py.DecRef(code)
+	defer func() { assert.Equal(t, 1, py.RefCnt(code)) }()
 	assert.NotNil(t, code)
 
 	module := pyimport.ExecCodeModuleWithPathnames("test_module", code, "test_module.py", "test_module.py")
@@ -253,9 +288,16 @@ func TestPyImportGetMagicTag(t *testing.T) {
 func TestPyImportGetModuleDict(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	dic := pyimport.GetModuleDict()
-	defer py.DecRef(dic)
-	assert.True(t, pydict.Check(dic))
+	dicA := pyimport.GetModuleDict()
+	assert.True(t, pydict.Check(dicA))
+	dicARefCnt := py.RefCnt(dicA)
+
+	dicB := pyimport.GetModuleDict()
+	assert.True(t, pydict.Check(dicB))
+	dicBRefCnt := py.RefCnt(dicB)
+
+	assert.Equal(t, dicA, dicB)
+	assert.Equal(t, dicARefCnt, dicBRefCnt)
 }
 
 func TestPyImportGetModule(t *testing.T) {
@@ -266,19 +308,30 @@ func TestPyImportGetModule(t *testing.T) {
 	name := "os"
 	osA := pyimport.ImportModule(name)
 	defer py.DecRef(osA)
+	osARefCnt := py.RefCnt(osA)
+	defer func() { assert.Equal(t, osARefCnt, py.RefCnt(osA)) }()
 
 	nameUnicode := pyunicode.FromString(name)
 	defer py.DecRef(nameUnicode)
+	nameUnicodeRefCnt := py.RefCnt(nameUnicode)
+	defer func() { assert.Equal(t, nameUnicodeRefCnt, py.RefCnt(nameUnicode)) }()
+
 	osB := pyimport.GetModule(nameUnicode)
 	defer py.DecRef(osB)
+	osBRefCnt := py.RefCnt(osB)
+	defer func() { assert.Equal(t, osBRefCnt, py.RefCnt(osB)) }()
 
 	assert.Equal(t, osA, osB)
+	assert.Equal(t, osARefCnt+1, osBRefCnt)
 }
 
 func TestPyImportGetImporter(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	pathList := pysys.GetObject("path")
+	pathListRefCnt := py.RefCnt(pathList)
+	defer func() { assert.Equal(t, pathListRefCnt, py.RefCnt(pathList)) }()
+
 	path := pylist.GetItem(pathList, 0)
 	assert.NotNil(t, path)
 

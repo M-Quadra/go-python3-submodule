@@ -19,10 +19,11 @@ func TestPyModuleCheck(t *testing.T) {
 	assert.False(t, pymodule.Check(nil))
 	assert.False(t, pymodule.CheckExact(nil))
 
-	modelPy := pymodule.New("test_module")
-	defer py.DecRef(modelPy)
-	assert.True(t, pymodule.Check(modelPy))
-	assert.True(t, pymodule.CheckExact(modelPy))
+	module := pymodule.New("test_module")
+	defer py.DecRef(module)
+
+	assert.True(t, pymodule.Check(module))
+	assert.True(t, pymodule.CheckExact(module))
 }
 
 func TestPyModuleNewObject(t *testing.T) {
@@ -30,21 +31,38 @@ func TestPyModuleNewObject(t *testing.T) {
 
 	assert.Nil(t, pymodule.NewObject(nil))
 
-	namePy := pyunicode.FromString("test_module")
-	defer py.DecRef(namePy)
-	assert.NotNil(t, namePy)
+	name := pyunicode.FromString("test_module")
+	defer py.DecRef(name)
+	nameRefCnt := py.RefCnt(name)
+	defer func() { assert.Equal(t, nameRefCnt, py.RefCnt(name)) }()
 
-	modelPy := pymodule.NewObject(namePy)
-	defer py.DecRef(modelPy)
-	assert.NotNil(t, modelPy)
+	assert.NotNil(t, name)
+
+	moduleA := pymodule.NewObject(name)
+	defer py.DecRef(moduleA)
+	defer func() { assert.Equal(t, 1, py.RefCnt(moduleA)) }()
+	assert.NotNil(t, moduleA)
+
+	moduleB := pymodule.NewObject(name)
+	defer py.DecRef(moduleB)
+	defer func() { assert.Equal(t, 1, py.RefCnt(moduleB)) }()
+	assert.NotNil(t, moduleB)
 }
 
 func TestPyModuleNew(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	modelPy := pymodule.New("test_module")
-	defer py.DecRef(modelPy)
-	assert.NotNil(t, modelPy)
+	name := "test_module"
+
+	moduleA := pymodule.New(name)
+	defer py.DecRef(moduleA)
+	defer func() { assert.Equal(t, 1, py.RefCnt(moduleA)) }()
+	assert.NotNil(t, moduleA)
+
+	moduleB := pymodule.New(name)
+	defer py.DecRef(moduleB)
+	defer func() { assert.Equal(t, 1, py.RefCnt(moduleB)) }()
+	assert.NotNil(t, moduleB)
 }
 
 func TestPyModuleGetDict(t *testing.T) {
@@ -52,17 +70,14 @@ func TestPyModuleGetDict(t *testing.T) {
 
 	assert.Nil(t, pymodule.GetDict(nil))
 
-	name := "sys"
-	namePy := pyunicode.FromString(name)
-	defer py.DecRef(namePy)
-	assert.NotNil(t, namePy)
+	sys := pyimport.ImportModule("sys")
+	defer py.DecRef(sys)
+	sysRefCnt := py.RefCnt(sys)
+	defer func() { assert.Equal(t, sysRefCnt, py.RefCnt(sys)) }()
+	assert.NotNil(t, sys)
 
-	sysPy := pyimport.ImportModule(name)
-	defer py.DecRef(sysPy)
-	assert.NotNil(t, sysPy)
-
-	dicPy := pymodule.GetDict(sysPy)
-	assert.True(t, pydict.Check(dicPy))
+	dic := pymodule.GetDict(sys)
+	assert.True(t, pydict.Check(dic))
 }
 
 func TestPyModuleGetNameObject(t *testing.T) {
@@ -71,11 +86,17 @@ func TestPyModuleGetNameObject(t *testing.T) {
 	assert.Nil(t, pymodule.GetNameObject(nil))
 
 	name := "sys"
-	sysPy := pyimport.ImportModule(name)
-	defer py.DecRef(sysPy)
-	assert.NotNil(t, sysPy)
 
-	namePy := pymodule.GetNameObject(sysPy)
+	sys := pyimport.ImportModule(name)
+	defer py.DecRef(sys)
+	sysRefCnt := py.RefCnt(sys)
+	defer func() { assert.Equal(t, sysRefCnt, py.RefCnt(sys)) }()
+	assert.NotNil(t, sys)
+
+	namePy := pymodule.GetNameObject(sys)
+	namePyRefCnt := py.RefCnt(namePy)
+	defer func() { assert.Equal(t, namePyRefCnt, py.RefCnt(namePy)) }()
+
 	assert.Equal(t, name, pyunicode.AsString(namePy))
 }
 
@@ -85,11 +106,13 @@ func TestPyModuleGetName(t *testing.T) {
 	assert.Equal(t, "", pymodule.GetName(nil))
 
 	name := "sys"
-	sysPy := pyimport.ImportModule(name)
-	defer py.DecRef(sysPy)
-	assert.NotNil(t, sysPy)
+	sys := pyimport.ImportModule(name)
+	defer py.DecRef(sys)
+	sysRefCnt := py.RefCnt(sys)
+	defer func() { assert.Equal(t, sysRefCnt, py.RefCnt(sys)) }()
+	assert.NotNil(t, sys)
 
-	assert.Equal(t, name, pymodule.GetName(sysPy))
+	assert.Equal(t, name, pymodule.GetName(sys))
 }
 
 func TestPyModuleGetState(t *testing.T) {
@@ -97,11 +120,13 @@ func TestPyModuleGetState(t *testing.T) {
 
 	assert.True(t, pymodule.GetState(nil) == nil)
 
-	sysPy := pyimport.ImportModule("sys")
-	defer py.DecRef(sysPy)
-	assert.NotNil(t, sysPy)
+	sys := pyimport.ImportModule("sys")
+	defer py.DecRef(sys)
+	sysRefCnt := py.RefCnt(sys)
+	defer func() { assert.Equal(t, sysRefCnt, py.RefCnt(sys)) }()
+	assert.NotNil(t, sys)
 
-	assert.True(t, pymodule.GetState(sysPy) == nil)
+	assert.True(t, pymodule.GetState(sys) == nil)
 }
 
 func TestPyModuleGetFilenameObject(t *testing.T) {
@@ -109,24 +134,29 @@ func TestPyModuleGetFilenameObject(t *testing.T) {
 
 	assert.Nil(t, pymodule.GetFilenameObject(nil))
 
-	testPy := pyimport.ImportModule("test")
-	defer py.DecRef(testPy)
+	test := pyimport.ImportModule("test")
+	defer py.DecRef(test)
+	testRefCnt := py.RefCnt(test)
+	defer func() { assert.Equal(t, testRefCnt, py.RefCnt(test)) }()
 
-	namePy := pymodule.GetFilenameObject(testPy)
-	defer py.DecRef(namePy)
-	assert.NotNil(t, namePy)
+	name := pymodule.GetFilenameObject(test)
+	nameRefCnt := py.RefCnt(name)
+	defer func() { assert.Equal(t, nameRefCnt, py.RefCnt(name)) }()
+	assert.NotNil(t, name)
 
-	assert.True(t, strings.HasSuffix(pyunicode.AsString(namePy), "test/__init__.py"))
+	assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "test/__init__.py"))
 }
 
 func TestPyModuleGetFilename(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	pymodule.GetFilename(nil)
+	assert.Equal(t, "", pymodule.GetFilename(nil))
 
-	testPy := pyimport.ImportModule("test")
-	defer py.DecRef(testPy)
+	test := pyimport.ImportModule("test")
+	defer py.DecRef(test)
+	testRefCnt := py.RefCnt(test)
+	defer func() { assert.Equal(t, testRefCnt, py.RefCnt(test)) }()
 
-	name := pymodule.GetFilename(testPy)
+	name := pymodule.GetFilename(test)
 	assert.True(t, strings.HasSuffix(name, "test/__init__.py"))
 }

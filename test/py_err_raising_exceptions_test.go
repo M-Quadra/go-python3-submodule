@@ -53,6 +53,8 @@ func TestPyErrSetNone(t *testing.T) {
 	{
 		msg := pyunicode.FromString("soga")
 		defer py.DecRef(msg)
+		msgRefCnt := py.RefCnt(msg)
+		defer func() { assert.Equal(t, msgRefCnt, py.RefCnt(msg)) }()
 
 		pyerr.SetNone(msg) // SystemError: _PyErr_SetObject: exception 'soga' is not a BaseException subclass
 

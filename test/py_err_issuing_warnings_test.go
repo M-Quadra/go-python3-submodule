@@ -19,6 +19,8 @@ func TestPyErrWarnEx(t *testing.T) {
 
 	dic := pydict.New()
 	defer py.DecRef(dic)
+	defer func() { assert.Equal(t, 1, py.RefCnt(dic)) }()
+
 	assert.False(t, pyerr.WarnEx(dic, "msg", 1))
 }
 
@@ -44,12 +46,18 @@ func TestPyErrWarnExplicitObject(t *testing.T) {
 
 	msg := pyunicode.FromString("msg")
 	defer py.DecRef(msg)
+	msgRefCnt := py.RefCnt(msg)
+	defer func() { assert.Equal(t, msgRefCnt, py.RefCnt(msg)) }()
 
 	filename := pyunicode.FromString("test.py")
 	defer py.DecRef(filename)
+	filenameRefCnt := py.RefCnt(filename)
+	defer func() { assert.Equal(t, filenameRefCnt, py.RefCnt(filename)) }()
 
 	module := pyunicode.FromString("model")
 	defer py.DecRef(module)
+	moduleRefCnt := py.RefCnt(module)
+	defer func() { assert.Equal(t, moduleRefCnt, py.RefCnt(module)) }()
 
 	assert.True(t, pyerr.WarnExplicitObject(pyexc.RuntimeWarning, msg, filename, 0, module, nil))
 
@@ -68,6 +76,8 @@ func TestPyErrWarnExplicit(t *testing.T) {
 
 	msg := pyunicode.FromString("msg")
 	defer py.DecRef(msg)
+	msgRefCnt := py.RefCnt(msg)
+	defer func() { assert.Equal(t, msgRefCnt, py.RefCnt(msg)) }()
 
 	assert.True(t, pyerr.WarnExplicit(pyexc.RuntimeWarning, "msg", "test.py", 1, "module", nil))
 	assert.True(t, pyerr.WarnExplicit(nil, "msg", "test.py", 2, "module", nil))

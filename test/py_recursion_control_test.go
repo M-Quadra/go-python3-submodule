@@ -19,12 +19,14 @@ func TestPyRecursiveCall(t *testing.T) {
 func TestPyRepr(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	strPy := pyunicode.FromString("hello world")
-	defer py.DecRef(strPy)
+	str := pyunicode.FromString("hello world")
+	defer py.DecRef(str)
+	strRefCnt := py.RefCnt(str)
+	defer func() { assert.Equal(t, strRefCnt, py.RefCnt(str)) }()
 
-	assert.Zero(t, py.ReprEnter(strPy))
-	assert.True(t, py.ReprEnter(strPy) > 0)
+	assert.Zero(t, py.ReprEnter(str))
+	assert.True(t, py.ReprEnter(str) > 0)
 
-	py.ReprLeave(strPy)
-	py.ReprLeave(strPy)
+	py.ReprLeave(str)
+	py.ReprLeave(str)
 }

@@ -19,11 +19,13 @@ func TestPyLongCheck(t *testing.T) {
 	assert.False(t, pylong.Check(nil))
 	assert.False(t, pylong.CheckExact(nil))
 
-	vPy := pylong.FromInt(rand.Intn(1000))
-	defer py.DecRef(vPy)
+	v := pylong.FromInt(rand.Intn(1000))
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
 
-	assert.True(t, pylong.Check(vPy))
-	assert.True(t, pylong.CheckExact(vPy))
+	assert.True(t, pylong.Check(v))
+	assert.True(t, pylong.CheckExact(v))
 }
 
 func TestPyLongFromAsInt(t *testing.T) {
@@ -31,10 +33,13 @@ func TestPyLongFromAsInt(t *testing.T) {
 
 	assert.Equal(t, -1, pylong.AsInt(nil))
 
-	v := rand.Intn(1000)
-	vPy := pylong.FromInt(v)
-	defer py.DecRef(vPy)
-	assert.Equal(t, v, pylong.AsInt(vPy))
+	vRand := rand.Intn(1000)
+	v := pylong.FromInt(vRand)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.Equal(t, vRand, pylong.AsInt(v))
 }
 
 func TestPyLongFromAsUint(t *testing.T) {
@@ -42,10 +47,13 @@ func TestPyLongFromAsUint(t *testing.T) {
 
 	assert.Equal(t, uint(math.MaxUint), pylong.AsUint(nil))
 
-	v := uint(rand.Intn(1000))
-	vPy := pylong.FromUint(v)
-	defer py.DecRef(vPy)
-	assert.Equal(t, v, pylong.AsUint(vPy))
+	vRand := uint(rand.Intn(1000))
+	v := pylong.FromUint(vRand)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.Equal(t, vRand, pylong.AsUint(v))
 }
 
 func TestPyLongFromAsInt64(t *testing.T) {
@@ -53,10 +61,13 @@ func TestPyLongFromAsInt64(t *testing.T) {
 
 	assert.Equal(t, int64(-1), pylong.AsInt64(nil))
 
-	v := rand.Int63()
-	vPy := pylong.FromInt64(v)
-	defer py.DecRef(vPy)
-	assert.Equal(t, v, pylong.AsInt64(vPy))
+	vRand := rand.Int63()
+	v := pylong.FromInt64(vRand)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.Equal(t, vRand, pylong.AsInt64(v))
 }
 
 func TestPyLongFromAsUint64(t *testing.T) {
@@ -64,10 +75,13 @@ func TestPyLongFromAsUint64(t *testing.T) {
 
 	assert.Equal(t, uint64(math.MaxUint64), pylong.AsUint64(nil))
 
-	v := rand.Uint64()
-	vPy := pylong.FromUint64(v)
-	defer py.DecRef(vPy)
-	assert.Equal(t, v, pylong.AsUint64(vPy))
+	vRand := rand.Uint64()
+	v := pylong.FromUint64(vRand)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.Equal(t, vRand, pylong.AsUint64(v))
 }
 
 func TestPyLongFromAsFloat64(t *testing.T) {
@@ -75,19 +89,25 @@ func TestPyLongFromAsFloat64(t *testing.T) {
 
 	assert.Equal(t, -1.0, pylong.AsFloat64(nil))
 
-	v := 3.14
-	vPy := pylong.FromFloat64(v)
-	defer py.DecRef(vPy)
-	assert.True(t, math.Abs(3.0-pylong.AsFloat64(vPy)) < 1e8)
+	vFloat64 := 3.14
+	v := pylong.FromFloat64(vFloat64)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.True(t, math.Abs(3.0-pylong.AsFloat64(v)) < 1e8)
 }
 
 func TestPyLongFromString(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	v := rand.Intn(1000)
-	vPy := pylong.FromString(strconv.Itoa(v), 10)
-	defer py.DecRef(vPy)
-	assert.Equal(t, v, pylong.AsInt(vPy))
+	vRand := rand.Intn(1000)
+	v := pylong.FromString(strconv.Itoa(vRand), 10)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.Equal(t, vRand, pylong.AsInt(v))
 }
 
 func TestPyLongFromUnicode(t *testing.T) {
@@ -95,11 +115,16 @@ func TestPyLongFromUnicode(t *testing.T) {
 
 	assert.Nil(t, pylong.FromUnicodeObject(nil, 10))
 
-	v := rand.Intn(1000)
-	strPy := pyunicode.FromString(strconv.Itoa(v))
-	defer py.DecRef(strPy)
+	vRand := rand.Intn(1000)
+	str := pyunicode.FromString(strconv.Itoa(vRand))
+	defer py.DecRef(str)
+	strRefCnt := py.RefCnt(str)
+	defer func() { assert.Equal(t, strRefCnt, py.RefCnt(str)) }()
 
-	vPy := pylong.FromUnicodeObject(strPy, 10)
-	defer py.DecRef(vPy)
-	assert.Equal(t, v, pylong.AsInt(vPy))
+	v := pylong.FromUnicodeObject(str, 10)
+	defer py.DecRef(v)
+	vRefCnt := py.RefCnt(v)
+	defer func() { assert.Equal(t, vRefCnt, py.RefCnt(v)) }()
+
+	assert.Equal(t, vRand, pylong.AsInt(v))
 }

@@ -52,6 +52,7 @@ func TestPyErrNewException(t *testing.T) {
 
 		dic := pydict.New()
 		defer py.DecRef(dic)
+		defer func() { assert.Equal(t, 1, py.RefCnt(dic)) }()
 		pydict.SetItemString(dic, strconv.Itoa(rand.Intn(100)), pylong.FromInt(rand.Intn(100)))
 
 		exc := pyerr.NewException("module.class_2", nil, dic)

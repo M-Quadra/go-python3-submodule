@@ -104,19 +104,27 @@ func TestPySysSetArgvEx(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	{ // argv recovery
-		argv := pysys.GetObject("argv")
-		assert.Equal(t, 1, pylist.Size(argv))
-		assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+		path := pysys.GetObject("path")
+		py.IncRef(path)
+		defer py.DecRef(path)
+		defer func() { assert.Equal(t, 1, py.RefCnt(path)) }()
+
+		oldPath := pylist.New(pylist.Size(path))
+		defer func() { assert.Equal(t, 1, py.RefCnt(oldPath)) }()
+
+		assert.True(t, pylist.SetSlice(oldPath, 0, pylist.Size(path), path))
 		defer func() {
-			pysys.SetArgvEx(false)
-			assert.Equal(t, 1, pylist.Size(argv))
-			assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+			assert.Equal(t, 1, py.RefCnt(oldPath))
+			assert.True(t, pysys.SetObject("path", oldPath))
+			py.DecRef(oldPath)
 		}()
 	}
 
 	pysys.SetArgvEx(false, "test.py")
 
 	argv := pysys.GetObject("argv")
+	defer func() { assert.Equal(t, 1, py.RefCnt(argv)) }()
+
 	assert.Equal(t, 1, pylist.Size(argv))
 	assert.Equal(t, "test.py", pyunicode.AsString(pylist.GetItem(argv, 0)))
 }
@@ -126,27 +134,41 @@ func TestPySysSetArgv(t *testing.T) {
 
 	{ // path recovery
 		path := pysys.GetObject("path")
+		py.IncRef(path)
+		defer py.DecRef(path)
+		defer func() { assert.Equal(t, 1, py.RefCnt(path)) }()
+
 		oldPath := pylist.New(pylist.Size(path))
+		defer func() { assert.Equal(t, 1, py.RefCnt(oldPath)) }()
+
 		assert.True(t, pylist.SetSlice(oldPath, 0, pylist.Size(path), path))
 		defer func() {
+			assert.Equal(t, 1, py.RefCnt(oldPath))
 			assert.True(t, pysys.SetObject("path", oldPath))
+			py.DecRef(oldPath)
 		}()
 	}
 
 	{ // argv recovery
 		argv := pysys.GetObject("argv")
-		assert.Equal(t, 1, pylist.Size(argv))
-		assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+		py.IncRef(argv)
+		defer py.DecRef(argv)
+
+		argvArr := make([]string, 0, pylist.Size(argv))
+		for i := 0; i < pylist.Size(argv); i++ {
+			argvArr = append(argvArr, pyunicode.AsString(pylist.GetItem(argv, i)))
+		}
 		defer func() {
-			pysys.SetArgv()
-			assert.Equal(t, 1, pylist.Size(argv))
-			assert.Equal(t, "", pyunicode.AsString(pylist.GetItem(argv, 0)))
+			pysys.SetArgvEx(false, argvArr...)
+			assert.Equal(t, 1, py.RefCnt(argv))
 		}()
 	}
 
 	pysys.SetArgv("test.py")
 
 	argv := pysys.GetObject("argv")
+	defer func() { assert.Equal(t, 1, py.RefCnt(argv)) }()
+
 	assert.Equal(t, 1, pylist.Size(argv))
 	assert.Equal(t, "test.py", pyunicode.AsString(pylist.GetItem(argv, 0)))
 }

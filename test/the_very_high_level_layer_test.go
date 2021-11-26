@@ -32,6 +32,8 @@ func TestPyfunc(t *testing.T) {
 	assert.Equal(t, 0, exitCode)
 
 	stdout := pysys.GetObject("stdout")
+	stdoutRefCnt := py.RefCnt(stdout)
+	defer func() { assert.Equal(t, stdoutRefCnt, py.RefCnt(stdout)) }()
 
 	funName := pyunicode.FromString("getvalue")
 	defer py.DecRef(funName)
@@ -56,6 +58,8 @@ func TestPyRunSimpleString(t *testing.T) {
 	assert.Equal(t, 0, exitCode)
 
 	stdout := pysys.GetObject("stdout")
+	stdoutRefCnt := py.RefCnt(stdout)
+	defer func() { assert.Equal(t, stdoutRefCnt, py.RefCnt(stdout)) }()
 
 	funName := pyunicode.FromString("getvalue")
 	defer py.DecRef(funName)

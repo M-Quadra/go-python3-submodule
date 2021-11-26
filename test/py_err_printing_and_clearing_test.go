@@ -28,6 +28,7 @@ func TestPyErrPrintEx(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
 	pyerr.Clear()
+	assert.Nil(t, pyerr.Occurred())
 
 	pyerr.SetNone(pyexc.RuntimeError)
 	pyerr.PrintEx(true)
@@ -43,6 +44,8 @@ func TestPyErrWriteUnraisable(t *testing.T) {
 
 	msgPy := pyunicode.FromString("msg")
 	defer py.DecRef(msgPy)
+	msgPyRefCnt := py.RefCnt(msgPy)
+	defer func() { assert.Equal(t, msgPyRefCnt, py.RefCnt(msgPy)) }()
 
 	pyerr.WriteUnraisable(msgPy)
 	assert.Nil(t, pyerr.Occurred())

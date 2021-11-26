@@ -20,11 +20,16 @@ func TestPyUnicodeCheck(t *testing.T) {
 
 	u := pyunicode.FromString("")
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
+
 	assert.True(t, pyunicode.Check(u))
 	assert.True(t, pyunicode.CheckExact(u))
 
 	tuple := pytuple.New(1)
 	defer py.DecRef(tuple)
+	defer func() { assert.Equal(t, 1, py.RefCnt(tuple)) }()
+
 	assert.False(t, pyunicode.Check(tuple))
 	assert.False(t, pyunicode.CheckExact(tuple))
 }
@@ -37,6 +42,9 @@ func TestPyUnicodeNew(t *testing.T) {
 
 	u := pyunicode.New(11, 'z')
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
+
 	assert.NotNil(t, u)
 }
 
@@ -45,6 +53,9 @@ func TestPyUnicodeFromString(t *testing.T) {
 
 	u := pyunicode.FromString("AA")
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
+
 	assert.Equal(t, "AA", pyunicode.AsString(u))
 }
 
@@ -57,8 +68,13 @@ func TestPyUnicodeFromEncodedObject(t *testing.T) {
 	str := "HiHi"
 	b := pybytes.FromString(str)
 	defer py.DecRef(b)
+	bRefCnt := py.RefCnt(b)
+	defer func() { assert.Equal(t, bRefCnt, py.RefCnt(b)) }()
+
 	u := pyunicode.FromEncodedObject(b, "utf-8", "strict")
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
 
 	assert.Equal(t, str, pyunicode.AsString(u))
 }
@@ -70,24 +86,30 @@ func TestPyUnicodeGetLength(t *testing.T) {
 
 	u := pyunicode.FromString("刃无锋")
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
+
 	assert.Equal(t, 3, pyunicode.GetLength(u))
 }
 
 func TestPyUnicodeCopyCharacters(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	defer pyerr.Clear()
-
 	uA := pyunicode.FromString("QB鸦")
 	defer py.DecRef(uA)
+	uARefCnt := py.RefCnt(uA)
+	defer func() { assert.Equal(t, uARefCnt, py.RefCnt(uA)) }()
 
 	uB := pyunicode.FromString("鬼鸟")
 	defer py.DecRef(uB)
+	uBRefCnt := py.RefCnt(uB)
+	defer func() { assert.Equal(t, uBRefCnt, py.RefCnt(uB)) }()
 
 	assert.Equal(t, 2, pyunicode.CopyCharacters(uA, 0, uB, 0, 3))
 	assert.Equal(t, "鬼鸟鸦", pyunicode.AsString(uA))
 
-	assert.Equal(t, -1, pyunicode.CopyCharacters(uA, 2, uB, 0, 3))
+	assert.Equal(t, -1, pyunicode.CopyCharacters(uA, 2, uB, 0, 3)) // SystemError: Cannot write 2 characters at 2 in a string of 3 characters
+	pyerr.Clear()
 	assert.Equal(t, -1, pyunicode.CopyCharacters(nil, 2, uB, 0, 3))
 	assert.Equal(t, -1, pyunicode.CopyCharacters(uA, 2, nil, 0, 3))
 }
@@ -97,6 +119,8 @@ func TestPyUnicodeFill(t *testing.T) {
 
 	u := pyunicode.FromString("aaa")
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
 
 	assert.Equal(t, 2, pyunicode.Fill(u, 1, 2, 'b'))
 	assert.Equal(t, "abb", pyunicode.AsString(u))
@@ -113,6 +137,8 @@ func TestPyUnicodeWriteReadChar(t *testing.T) {
 
 	u := pyunicode.FromString("aaa")
 	defer py.DecRef(u)
+	uRefCnt := py.RefCnt(u)
+	defer func() { assert.Equal(t, uRefCnt, py.RefCnt(u)) }()
 
 	{
 		assert.Equal(t, 0, pyunicode.WriteChar(u, 1, 'b'))
@@ -137,13 +163,19 @@ func TestPyUnicodeSubstring(t *testing.T) {
 
 	uA := pyunicode.FromString("SF")
 	defer py.DecRef(uA)
+	uARefCnt := py.RefCnt(uA)
+	defer func() { assert.Equal(t, uARefCnt, py.RefCnt(uA)) }()
 
 	uB := pyunicode.Substring(uA, 1, 2)
 	defer py.DecRef(uB)
+	uBRefCnt := py.RefCnt(uB)
+	defer func() { assert.Equal(t, uBRefCnt, py.RefCnt(uB)) }()
 	assert.Equal(t, "F", pyunicode.AsString(uB))
 
 	uC := pyunicode.Substring(uA, 1, 3)
 	defer py.DecRef(uC)
+	uCRefCnt := py.RefCnt(uC)
+	defer func() { assert.Equal(t, uCRefCnt, py.RefCnt(uC)) }()
 	assert.Equal(t, "F", pyunicode.AsString(uC))
 
 	assert.Nil(t, pyunicode.Substring(uA, 1, -1))
