@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 	"testing"
 
@@ -144,7 +145,12 @@ func TestPyModuleGetFilenameObject(t *testing.T) {
 	defer func() { assert.Equal(t, nameRefCnt, py.RefCnt(name)) }()
 	assert.NotNil(t, name)
 
-	assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "test/__init__.py"))
+	switch runtime.GOOS {
+	case "linux":
+		assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "test/test.py"))
+	default:
+		assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "test/__init__.py"))
+	}
 }
 
 func TestPyModuleGetFilename(t *testing.T) {
@@ -158,5 +164,10 @@ func TestPyModuleGetFilename(t *testing.T) {
 	defer func() { assert.Equal(t, testRefCnt, py.RefCnt(test)) }()
 
 	name := pymodule.GetFilename(test)
-	assert.True(t, strings.HasSuffix(name, "test/__init__.py"))
+	switch runtime.GOOS {
+	case "linux":
+		assert.True(t, strings.HasSuffix(name, "test/test.py"))
+	default:
+		assert.True(t, strings.HasSuffix(name, "test/__init__.py"))
+	}
 }
