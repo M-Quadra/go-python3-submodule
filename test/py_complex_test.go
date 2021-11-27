@@ -56,9 +56,15 @@ func TestPyComplexFrom(t *testing.T) {
 	assert.True(t, pycallable.Check(funcPy))
 
 	vA := pycomplex.FromFloat64s(0, 1)
-	defer func() { assert.Equal(t, 0, py.RefCnt(vA)) }()
+	py.IncRef(vA)
+	defer py.DecRef(vA)
+	defer func() { assert.Equal(t, 1, py.RefCnt(vA)) }()
+
 	vB := pycomplex.FromFloat64s(0, 1)
-	defer func() { assert.Equal(t, 0, py.RefCnt(vA)) }()
+	py.IncRef(vB)
+	defer py.DecRef(vB)
+	defer func() { assert.Equal(t, 1, py.RefCnt(vA)) }()
+
 	args := pytuple.FromObjects(vA, vB)
 	defer py.DecRef(args)
 	defer func() { assert.Equal(t, 1, py.RefCnt(args)) }()
