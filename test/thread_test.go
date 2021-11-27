@@ -21,10 +21,13 @@ func TestPyEvalInitThreads(t *testing.T) {
 func TestPyGILState(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	pyeval.InitThreads()
+	save := pyeval.SaveThread()
+	defer pyeval.RestoreThread(save)
+
 	gil := pygilstate.Ensure()
+	defer pygilstate.Release(gil)
+
 	assert.True(t, pygilstate.Check())
-	pygilstate.Release(gil)
 }
 
 func TestPyThreadState(t *testing.T) {
