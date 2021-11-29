@@ -33,7 +33,11 @@ func TestPyGILState(t *testing.T) {
 func TestPyThreadState(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	pyeval.InitThreads()
+	save := pyeval.SaveThread()
+	defer pyeval.RestoreThread(save)
+
+	gil := pygilstate.Ensure()
+	defer pygilstate.Release(gil)
 
 	threadStateA := pygilstate.GetThisThreadState()
 	threadStateB := pythreadstate.Get()
@@ -46,9 +50,8 @@ func TestPyThreadState(t *testing.T) {
 func TestPyEvalSaveRestoreThread(t *testing.T) {
 	fmt.Println(assert.CallerInfo()[0])
 
-	pyeval.InitThreads()
-
 	threadState := pyeval.SaveThread()
+	defer pyeval.RestoreThread(threadState)
+
 	assert.False(t, pygilstate.Check())
-	pyeval.RestoreThread(threadState)
 }
