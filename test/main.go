@@ -11,6 +11,7 @@ import (
 )
 
 func init() {
+	py.Finalize()
 	py.Initialize()
 	// defer py.Finalize()
 	if !py.IsInitialized() {
@@ -27,9 +28,9 @@ func init() {
 		fmt.Println(err)
 		os.Exit(-1)
 	}
+
 	wdUnicode := pyunicode.FromString(wd)
 	defer py.DecRef(wdUnicode)
-
 	if !pylist.Append(paths, wdUnicode) {
 		os.Exit(-1)
 	}

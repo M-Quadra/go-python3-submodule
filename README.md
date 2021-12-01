@@ -22,7 +22,7 @@ go get github.com/M-Quadra/go-python3-submodule
 
 用例同测试, 见[test](./test)文件夹。
 
-方法名针对数据类型做了部分转换, 具体如下
+方法名针对数据类型做了部分转换, 具体如下:
 
 Python/C API | Go
 :---:|:---:
@@ -30,6 +30,45 @@ PyFloat_AsDouble | pyfloat.AsFloat64
 PyLong_AsLong | pylong.AsInt
 PyLong_AsLongLong | pylong.AsInt64
 ... | ...
+
+如遇卡死, 多半是GIL, 单线程可尝试添加以下代码:
+
+```
+if !pygilstate.Check() {
+	save := pyeval.SaveThread()
+	defer pyeval.RestoreThread(save)
+
+	gstate := pygilstate.Ensure()
+	defer pygilstate.Release(gstate)
+}
+
+// do something...
+```
+
+多线程自觉上锁:
+
+```
+var _m = sync.Mutex{}
+
+func xx() {
+	_m.Lock()
+	defer _m.Unlock()
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
+	if !pygilstate.Check() {
+		save := pyeval.SaveThread()
+		defer pyeval.RestoreThread(save)
+
+		gstate := pygilstate.Ensure()
+		defer pygilstate.Release(gstate)
+	}
+
+	// do something...
+}
+```
+
+具体用例可参考[此处](./test/benchmark/curvefit_test.go)
 
 # 肝 / Progress
 
@@ -41,6 +80,8 @@ PyLong_AsLongLong | pylong.AsInt64
 
 已知不同环境会有所差异, 大体完善后预计进Docker修缮。
 
+已完成`python:3.9`容器中的测试。测试过更多的环境后也许会打上版本标签。
+
 # 坑 / Todo
 
 - `PyModule_GetDef`涉及到结构体转换, 目前搁置。
@@ -49,6 +90,6 @@ PyLong_AsLongLong | pylong.AsInt64
 
 - `PyObject.ob_refcnt`应该弄成方法还是走`Py_REFCNT`? 同理`PyObject`是否也应该开辟方法
 
-- `Exception`的引用计数没搞懂, 暂且摸了。
+- `Exception`的引用计数没搞懂, 摸了。
 
 - 有余力会加上多版本支持, 预计为`go get .../go-python3-submodule/v9`, `go get .../go-python3-submodule/v8`形式, 暂无更好的思路。
