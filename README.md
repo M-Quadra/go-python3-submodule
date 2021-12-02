@@ -88,8 +88,12 @@ func xx() {
 
 - `Py_Main`调用卡死, 先注释掉, 随缘解决。
 
-- `PyObject.ob_refcnt`应该弄成方法还是走`Py_REFCNT`? 同理`PyObject`是否也应该开辟方法
+- `PyObject.ob_refcnt`应该弄成方法还是走`Py_REFCNT`? 同理`PyObject`是否也应该开辟方法?
 
 - `Exception`的引用计数没搞懂, 摸了。
 
 - 有余力会加上多版本支持, 预计为`go get .../go-python3-submodule/v9`, `go get .../go-python3-submodule/v8`形式, 暂无更好的思路。
+
+# 杂 / Other
+
+[容器测试记录](./test/dockerfiles/test_in_container_v9.md)
