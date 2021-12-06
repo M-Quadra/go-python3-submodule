@@ -6,13 +6,13 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/py"
-	pycallable "github.com/M-Quadra/go-python3-submodule/py-callable"
-	pycomplex "github.com/M-Quadra/go-python3-submodule/py-complex"
-	pyimport "github.com/M-Quadra/go-python3-submodule/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
-	pyobject "github.com/M-Quadra/go-python3-submodule/py-object"
-	pytuple "github.com/M-Quadra/go-python3-submodule/py-tuple"
+	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	pycallable "github.com/M-Quadra/go-python3-submodule/v9/py-callable"
+	pycomplex "github.com/M-Quadra/go-python3-submodule/v9/py-complex"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v9/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v9/py-object"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v9/py-tuple"
 	"github.com/stretchr/testify/assert"
 )
 

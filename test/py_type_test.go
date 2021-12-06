@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	pytype "github.com/M-Quadra/go-python3-submodule/py-type"
+	pytype "github.com/M-Quadra/go-python3-submodule/v9/py-type"
 	"github.com/stretchr/testify/assert"
 )
 

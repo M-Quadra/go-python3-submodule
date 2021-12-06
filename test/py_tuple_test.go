@@ -5,11 +5,11 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/py"
-	pyerr "github.com/M-Quadra/go-python3-submodule/py-err"
-	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/py-long"
-	pytuple "github.com/M-Quadra/go-python3-submodule/py-tuple"
+	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
+	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v9/py-tuple"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -11,7 +11,7 @@ import (
 import (
 	"unsafe"
 
-	python "github.com/M-Quadra/go-python3-submodule"
+	python "github.com/M-Quadra/go-python3-submodule/v9"
 )
 
 func toCThreadState(tstate *python.PyThreadState) *C.PyThreadState {

@@ -7,7 +7,7 @@ import (
 	"C"
 )
 
-import python "github.com/M-Quadra/go-python3-submodule"
+import python "github.com/M-Quadra/go-python3-submodule/v9"
 
 // GetBuiltins PyEval_GetBuiltins
 func GetBuiltins() *python.PyObject {

@@ -5,13 +5,13 @@ import (
 	"os"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/py"
-	pyeval "github.com/M-Quadra/go-python3-submodule/py-eval"
-	pygilstate "github.com/M-Quadra/go-python3-submodule/py-gil-state"
-	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
-	pysys "github.com/M-Quadra/go-python3-submodule/py-sys"
-	pythreadstate "github.com/M-Quadra/go-python3-submodule/py-thread-state"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v9/py-eval"
+	pygilstate "github.com/M-Quadra/go-python3-submodule/v9/py-gil-state"
+	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
+	pysys "github.com/M-Quadra/go-python3-submodule/v9/py-sys"
+	pythreadstate "github.com/M-Quadra/go-python3-submodule/v9/py-thread-state"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 

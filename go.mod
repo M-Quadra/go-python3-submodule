@@ -1,4 +1,4 @@
-module github.com/M-Quadra/go-python3-submodule
+module github.com/M-Quadra/go-python3-submodule/v9
 
 go 1.17
 

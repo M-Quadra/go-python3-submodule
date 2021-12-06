@@ -13,7 +13,7 @@ Go -> C API -> Python3, submodule style
 # 莽 / Installation
 
 ```
-go get github.com/M-Quadra/go-python3-submodule
+go get github.com/M-Quadra/go-python3-submodule/v9
 ```
 
 # 润 / Usage
@@ -92,7 +92,7 @@ func xx() {
 
 - `Exception`的引用计数没搞懂, 摸了。
 
-- 有余力会加上多版本支持, 预计为`go get .../go-python3-submodule/v9`, `go get .../go-python3-submodule/v8`形式, 暂无更好的思路。
+- 有余力会加上多版本支持, 预计为`go get .../go-python3-submodule/v9`, `go get .../go-python3-submodule/v8`形式。
 
 # 杂 / Other
 

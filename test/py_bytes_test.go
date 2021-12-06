@@ -5,9 +5,9 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/py"
-	pybytes "github.com/M-Quadra/go-python3-submodule/py-bytes"
-	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
+	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	pybytes "github.com/M-Quadra/go-python3-submodule/v9/py-bytes"
+	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
 	"github.com/stretchr/testify/assert"
 )
 

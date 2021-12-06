@@ -6,12 +6,12 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/py-dict"
-	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/py-long"
-	pytuple "github.com/M-Quadra/go-python3-submodule/py-tuple"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v9/py-dict"
+	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v9/py-tuple"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -6,13 +6,13 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/py"
-	pyeval "github.com/M-Quadra/go-python3-submodule/py-eval"
-	pyfloat "github.com/M-Quadra/go-python3-submodule/py-float"
-	pygilstate "github.com/M-Quadra/go-python3-submodule/py-gil-state"
-	pyimport "github.com/M-Quadra/go-python3-submodule/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/py-list"
-	pyobject "github.com/M-Quadra/go-python3-submodule/py-object"
+	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v9/py-eval"
+	pyfloat "github.com/M-Quadra/go-python3-submodule/v9/py-float"
+	pygilstate "github.com/M-Quadra/go-python3-submodule/v9/py-gil-state"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v9/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v9/py-object"
 	"github.com/stretchr/testify/assert"
 )
 
