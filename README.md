@@ -78,9 +78,7 @@ func xx() {
 
 测试用例大部分添加了引用计数检查。
 
-已知不同环境会有所差异, 大体完善后预计进Docker修缮。
-
-已完成`python:3.9`容器中的测试。测试过更多的环境后也许会打上版本标签。
+已知不同环境会有所差异, 正尝试在容器中适配不同版本, 目前主要以`3.9`为基准, 逐步削减与修改。
 
 # 坑 / Todo
 
@@ -92,8 +90,10 @@ func xx() {
 
 - `Exception`的引用计数没搞懂, 摸了。
 
-- 有余力会加上多版本支持, 预计为`go get .../go-python3-submodule/v9`, `go get .../go-python3-submodule/v8`形式。
+- CI.
+
+- English documentation.
 
 # 杂 / Other
 
-[容器测试记录](./test/dockerfiles/test_in_container_v9.md)
+[容器测试记录](https://github.com/M-Quadra/go-python3-submodule/wiki/%E5%AE%B9%E5%99%A8%E6%B5%8B%E8%AF%95%E8%AE%B0%E5%BD%95)

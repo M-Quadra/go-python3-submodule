@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"math"
 	"runtime"
 	"sync"
 	"testing"
@@ -46,11 +46,13 @@ func curvefit(t assert.TestingT, isMultithreading bool) {
 	opt := pyobject.CallFunctionObjArgs(getPopt, trainX, trainY)
 	defer py.DecRef(opt)
 	assert.True(t, pylist.Check(opt))
+	assert.Equal(t, 2, pylist.Size(opt))
 
-	// for i := 0; i < pylist.Size(opt); i++ {
-	// 	item := pyfloat.AsFloat64(pylist.GetItem(opt, i))
-	// 	fmt.Println(item)
-	// }
+	popts := []float64{1, 0}
+	for i := 0; i < pylist.Size(opt) && i < len(popts); i++ {
+		item := pyfloat.AsFloat64(pylist.GetItem(opt, i))
+		assert.True(t, math.Abs(item-popts[i]) < 1e-8)
+	}
 }
 
 func TestCurvefit(t *testing.T) {
@@ -68,9 +70,10 @@ func TestCurvefit(t *testing.T) {
 	defer py.DecRef(opt)
 	assert.True(t, pylist.Check(opt))
 
-	for i := 0; i < pylist.Size(opt); i++ {
+	popts := []float64{1, 0}
+	for i := 0; i < pylist.Size(opt) && i < len(popts); i++ {
 		item := pyfloat.AsFloat64(pylist.GetItem(opt, i))
-		fmt.Println(item)
+		assert.True(t, math.Abs(item-popts[i]) < 1e-8)
 	}
 }
 
