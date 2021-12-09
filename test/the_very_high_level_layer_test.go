@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v9/py-object"
-	pyrun "github.com/M-Quadra/go-python3-submodule/v9/py-run"
-	pysys "github.com/M-Quadra/go-python3-submodule/v9/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v8/py"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v8/py-object"
+	pyrun "github.com/M-Quadra/go-python3-submodule/v8/py-run"
+	pysys "github.com/M-Quadra/go-python3-submodule/v8/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v8/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -38,7 +38,7 @@ func TestPyfunc(t *testing.T) {
 	funName := pyunicode.FromString("getvalue")
 	defer py.DecRef(funName)
 
-	result := pyobject.CallMethodNoArgs(stdout, funName)
+	result := pyobject.CallMethodObjArgs(stdout, funName)
 	defer py.DecRef(result)
 
 	assert.Equal(t, "hello world\n", pyunicode.AsString(result))
@@ -64,7 +64,7 @@ func TestPyRunSimpleString(t *testing.T) {
 	funName := pyunicode.FromString("getvalue")
 	defer py.DecRef(funName)
 
-	result := pyobject.CallMethodNoArgs(stdout, funName)
+	result := pyobject.CallMethodObjArgs(stdout, funName)
 	defer py.DecRef(result)
 
 	assert.Equal(t, "hello world\n", pyunicode.AsString(result))

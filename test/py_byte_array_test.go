@@ -5,8 +5,8 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pybytearray "github.com/M-Quadra/go-python3-submodule/v9/py-byte-array"
+	"github.com/M-Quadra/go-python3-submodule/v8/py"
+	pybytearray "github.com/M-Quadra/go-python3-submodule/v8/py-byte-array"
 	"github.com/stretchr/testify/assert"
 )
 

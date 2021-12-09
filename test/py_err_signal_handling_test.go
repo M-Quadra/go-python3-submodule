@@ -5,8 +5,8 @@ import (
 	"runtime"
 	"testing"
 
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v9/py-exc"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v8/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v8/py-exc"
 	"github.com/stretchr/testify/assert"
 )
 

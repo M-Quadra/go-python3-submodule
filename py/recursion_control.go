@@ -3,6 +3,7 @@ package py
 import (
 	/*
 		#include "Python.h"
+		#include "cgo_bridge.h"
 	*/
 	"C"
 )
@@ -10,7 +11,7 @@ import (
 import (
 	"unsafe"
 
-	python "github.com/M-Quadra/go-python3-submodule/v9"
+	python "github.com/M-Quadra/go-python3-submodule/v8"
 )
 
 // EnterRecursiveCall Py_EnterRecursiveCall
@@ -18,12 +19,12 @@ func EnterRecursiveCall(where string) int {
 	whereC := C.CString(where)
 	defer C.free(unsafe.Pointer(whereC))
 
-	return int(C.Py_EnterRecursiveCall(whereC))
+	return int(C.cgo_Py_EnterRecursiveCall(whereC))
 }
 
 // LeaveRecursiveCall Py_LeaveRecursiveCall
 func LeaveRecursiveCall() {
-	C.Py_LeaveRecursiveCall()
+	C.cgo_Py_LeaveRecursiveCall()
 }
 
 // ReprEnter Py_ReprEnter

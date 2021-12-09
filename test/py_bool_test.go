@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pybool "github.com/M-Quadra/go-python3-submodule/v9/py-bool"
-	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
+	"github.com/M-Quadra/go-python3-submodule/v8/py"
+	pybool "github.com/M-Quadra/go-python3-submodule/v8/py-bool"
+	pylist "github.com/M-Quadra/go-python3-submodule/v8/py-list"
 	"github.com/stretchr/testify/assert"
 )
 

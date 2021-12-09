@@ -7,7 +7,7 @@ import (
 	"C"
 )
 
-import python "github.com/M-Quadra/go-python3-submodule/v9"
+import python "github.com/M-Quadra/go-python3-submodule/v8"
 
 // Clear PyErr_Clear
 func Clear() {

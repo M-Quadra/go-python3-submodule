@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	pycallable "github.com/M-Quadra/go-python3-submodule/v9/py-callable"
-	pydict "github.com/M-Quadra/go-python3-submodule/v9/py-dict"
-	pyeval "github.com/M-Quadra/go-python3-submodule/v9/py-eval"
+	pycallable "github.com/M-Quadra/go-python3-submodule/v8/py-callable"
+	pydict "github.com/M-Quadra/go-python3-submodule/v8/py-dict"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v8/py-eval"
 	"github.com/stretchr/testify/assert"
 )
 

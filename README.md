@@ -13,7 +13,7 @@ Go -> C API -> Python3, submodule style
 # 莽 / Installation
 
 ```
-go get github.com/M-Quadra/go-python3-submodule/v9
+go get github.com/M-Quadra/go-python3-submodule/v8
 ```
 
 # 润 / Usage

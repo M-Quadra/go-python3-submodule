@@ -11,26 +11,12 @@ import (
 import (
 	"unsafe"
 
-	python "github.com/M-Quadra/go-python3-submodule/v9"
+	python "github.com/M-Quadra/go-python3-submodule/v8"
 )
 
 // Call PyObject_Call
 func Call(callable, args, kwargs *python.PyObject) *python.PyObject {
 	return toObject(C.PyObject_Call(toC(callable), toC(args), toC(kwargs)))
-}
-
-// CallNoArgs PyObject_CallNoArgs
-func CallNoArgs(callable *python.PyObject) *python.PyObject {
-	return toObject(C.PyObject_CallNoArgs(toC(callable)))
-}
-
-// CallOneArg PyObject_CallOneArg
-func CallOneArg(callable, arg *python.PyObject) *python.PyObject {
-	if arg == nil {
-		return CallNoArgs(callable)
-	}
-
-	return toObject(C.PyObject_CallOneArg(toC(callable), toC(arg)))
 }
 
 // CallObject PyObject_CallObject
@@ -56,7 +42,7 @@ func CallFunctionObjArgs(callable *python.PyObject, args ...*python.PyObject) *p
 		return nil
 	}
 	if len(args) <= 0 {
-		return CallNoArgs(callable)
+		toObject(C.cgo_PyObject_CallFunctionObjArgs(toC(callable), 0, nil))
 	}
 
 	argsC := make([]*C.PyObject, 0, len(args))
@@ -74,7 +60,7 @@ func CallMethodObjArgs(obj, name *python.PyObject, args ...*python.PyObject) *py
 		return nil
 	}
 	if len(args) <= 0 {
-		return CallMethodNoArgs(obj, name)
+		return toObject(C.cgo_PyObject_CallMethodObjArgs(toC(obj), toC(name), 0, nil))
 	}
 
 	argsC := make([]*C.PyObject, 0, len(args))
@@ -83,16 +69,6 @@ func CallMethodObjArgs(obj, name *python.PyObject, args ...*python.PyObject) *py
 	}
 
 	return toObject(C.cgo_PyObject_CallMethodObjArgs(toC(obj), toC(name), (C.int)(len(args)), (**C.PyObject)(unsafe.Pointer(&argsC[0]))))
-}
-
-// CallMethodNoArgs PyObject_CallMethodNoArgs
-func CallMethodNoArgs(obj, name *python.PyObject) *python.PyObject {
-	return toObject(C.PyObject_CallMethodNoArgs(toC(obj), toC(name)))
-}
-
-// CallMethodOneArg PyObject_CallMethodOneArg
-func CallMethodOneArg(obj, name, arg *python.PyObject) *python.PyObject {
-	return toObject(C.PyObject_CallMethodOneArg(toC(obj), toC(name), toC(arg)))
 }
 
 // PyObject_Vectorcall

@@ -10,8 +10,8 @@ import (
 import (
 	"unsafe"
 
-	python "github.com/M-Quadra/go-python3-submodule/v9"
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
+	python "github.com/M-Quadra/go-python3-submodule/v8"
+	"github.com/M-Quadra/go-python3-submodule/v8/py"
 )
 
 // FromObject PyByteArray_FromObject

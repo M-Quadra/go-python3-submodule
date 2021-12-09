@@ -8,7 +8,7 @@ import (
 	"C"
 )
 
-import python "github.com/M-Quadra/go-python3-submodule/v9"
+import python "github.com/M-Quadra/go-python3-submodule/v8"
 
 // Check PyList_Check
 func Check(p *python.PyObject) bool {

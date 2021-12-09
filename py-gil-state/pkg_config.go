@@ -11,7 +11,7 @@ import (
 import (
 	"unsafe"
 
-	python "github.com/M-Quadra/go-python3-submodule/v9"
+	python "github.com/M-Quadra/go-python3-submodule/v8"
 )
 
 func toCGILState(state python.PyGILState) C.PyGILState_STATE {

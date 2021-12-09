@@ -5,15 +5,15 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v9/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v9/py-exc"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v9/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v9/py-object"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v8/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v8/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v8/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v8/py-exc"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v8/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v8/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v8/py-long"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v8/py-object"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v8/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -569,7 +569,7 @@ func TestPyObjectDir(t *testing.T) {
 	defer py.DecRef(reprPy)
 	defer func() { assert.Equal(t, 1, py.RefCnt(reprPy)) }()
 
-	str := "['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']"
+	str := "['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']"
 	assert.Equal(t, str, pyunicode.AsString(reprPy))
 }
 
