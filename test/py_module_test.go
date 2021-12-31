@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"runtime"
 	"strings"
 	"testing"
 
@@ -135,22 +134,17 @@ func TestPyModuleGetFilenameObject(t *testing.T) {
 
 	assert.Nil(t, pymodule.GetFilenameObject(nil))
 
-	test := pyimport.ImportModule("test")
-	defer py.DecRef(test)
-	testRefCnt := py.RefCnt(test)
-	defer func() { assert.Equal(t, testRefCnt, py.RefCnt(test)) }()
+	queue := pyimport.ImportModule("queue")
+	defer py.DecRef(queue)
+	queueRefCnt := py.RefCnt(queue)
+	defer func() { assert.Equal(t, queueRefCnt, py.RefCnt(queue)) }()
 
-	name := pymodule.GetFilenameObject(test)
+	name := pymodule.GetFilenameObject(queue)
 	nameRefCnt := py.RefCnt(name)
 	defer func() { assert.Equal(t, nameRefCnt, py.RefCnt(name)) }()
 	assert.NotNil(t, name)
 
-	switch runtime.GOOS {
-	case "linux":
-		assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "test/test.py"))
-	default:
-		assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "test/__init__.py"))
-	}
+	assert.True(t, strings.HasSuffix(pyunicode.AsString(name), "/queue.py"))
 }
 
 func TestPyModuleGetFilename(t *testing.T) {
@@ -158,16 +152,11 @@ func TestPyModuleGetFilename(t *testing.T) {
 
 	assert.Equal(t, "", pymodule.GetFilename(nil))
 
-	test := pyimport.ImportModule("test")
-	defer py.DecRef(test)
-	testRefCnt := py.RefCnt(test)
-	defer func() { assert.Equal(t, testRefCnt, py.RefCnt(test)) }()
+	queue := pyimport.ImportModule("queue")
+	defer py.DecRef(queue)
+	queueRefCnt := py.RefCnt(queue)
+	defer func() { assert.Equal(t, queueRefCnt, py.RefCnt(queue)) }()
 
-	name := pymodule.GetFilename(test)
-	switch runtime.GOOS {
-	case "linux":
-		assert.True(t, strings.HasSuffix(name, "test/test.py"))
-	default:
-		assert.True(t, strings.HasSuffix(name, "test/__init__.py"))
-	}
+	name := pymodule.GetFilename(queue)
+	assert.True(t, strings.HasSuffix(name, "/queue.py"))
 }
