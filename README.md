@@ -90,6 +90,8 @@ func xx() {
 
 - `Exception`的引用计数没搞懂, 摸了。
 
+- 升级`macOS 12.1`后, `pyerr.SetInterrupt()`表现变得与Python官方镜像内一致, 疑惑。
+
 - CI.
 
 - English documentation.
