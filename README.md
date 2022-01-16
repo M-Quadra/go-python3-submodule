@@ -1,28 +1,31 @@
 # go-python3-submodule
 
-Go -> C API -> Python3, submodule style
+English (poorly_(ˊཀˋ」∠)_) | [简体中文](./README_zh-cn.md)
 
-此物源自另一个<del>有生之年</del>工程的拆分, 尝试将[DataDog/go-python3](https://github.com/DataDog/go-python3)改造更加面向对象与强类型未果, 经历合久必分, 分久必合, 反复折腾后只余构建速度催人泪下。
+This is Go bindings for Python3/C API with submodule style. 
 
-> 阿库娅大人说: "阿库西斯教徒都是努力的人, 就算失败了也是世界的错！遇到困难先跑路, 大不了弃坑。"
-> 
-> 我老婆说: "我讨厌的事有三件『办不到、好累、好麻烦』这三句话非常不好, 会抹杀人类所拥有的无限可能。"
+This project was inspired by [DataDog/go-python3](https://github.com/DataDog/go-python3). Faster compilation with multiple submodules.
 
-历史的倒车再次启动, 分离子模块, 先完成API绑定。
+# Installation
 
-# 莽 / Installation
+Recommend Go modules.
 
 ```
 go get github.com/M-Quadra/go-python3-submodule/v9
 ```
 
-# 润 / Usage
+Python version | Package URL
+:---:|:---:
+3.9 | github.com/M-Quadra/go-python3-submodule/v9
+3.8 | github.com/M-Quadra/go-python3-submodule/v8
 
-调用方式同`Python/C API`方法, 如`PyBool_Check(x)`调用方法为`pybool.Check`, 包名由编辑器自动补全。
+# Usage
 
-用例同测试, 见[test](./test)文件夹。
+Use as `Python/C API` functions. Eg: `PyBool_Check(x)` call with `pybool.Check`. Let gopls auto autocomplete package import.
 
-方法名针对数据类型做了部分转换, 具体如下:
+Test as example, watch [test](./test)folder.
+
+The function names converted by type. As follows:
 
 Python/C API | Go
 :---:|:---:
@@ -31,7 +34,7 @@ PyLong_AsLong | pylong.AsInt
 PyLong_AsLongLong | pylong.AsInt64
 ... | ...
 
-如遇卡死, 多半是GIL, 单线程可尝试添加以下代码:
+If you get stuck when running, check the GIL. For single threads try following code:
 
 ```
 if !pygilstate.Check() {
@@ -45,7 +48,7 @@ if !pygilstate.Check() {
 // do something...
 ```
 
-多线程自觉上锁:
+In goroutines, just add Lock.
 
 ```
 var _m = sync.Mutex{}
@@ -68,34 +71,28 @@ func xx() {
 }
 ```
 
-具体用例可参考[此处](./test/benchmark/curvefit_test.go)
+This is an [example](./test/benchmark/curvefit_test.go).
 
-# 肝 / Progress
+# Progress
 
-开发环境: macOS 12.0, python 3.9。
+Development environment: macOS 12.1, python 3.9.
 
-已迁移[DataDog/go-python3](https://github.com/DataDog/go-python3)的大部分方法, 当然还有些小问题龟速修复中...
+Add most of functions in [DataDog/go-python3](https://github.com/DataDog/go-python3).
 
-测试用例大部分添加了引用计数检查。
+Add reference count check for most of test cases.
 
-已知不同环境会有所差异, 正尝试在容器中适配不同版本, 目前主要以`3.9`为基准, 逐步削减与修改。
+# Todo
 
-# 坑 / Todo
+- `PyModule_GetDef`, need convert to structure.
 
-- `PyModule_GetDef`涉及到结构体转换, 目前搁置。
+- Support `Py_Main`.
 
-- `Py_Main`调用卡死, 先注释掉, 随缘解决。
+- Add `PyObject.ob_refcnt` or keep `Py_REFCNT`?
 
-- `PyObject.ob_refcnt`应该弄成方法还是走`Py_REFCNT`? 同理`PyObject`是否也应该开辟方法?
-
-- `Exception`的引用计数没搞懂, 摸了。
-
-- 升级`macOS 12.1`后, `pyerr.SetInterrupt()`表现变得与Python官方镜像内一致, 疑惑。
+- Reference count check for `Exception`.
 
 - CI.
 
-- English documentation.
+# Other
 
-# 杂 / Other
-
-[容器测试记录](https://github.com/M-Quadra/go-python3-submodule/wiki/%E5%AE%B9%E5%99%A8%E6%B5%8B%E8%AF%95%E8%AE%B0%E5%BD%95)
+[Compile Test](https://github.com/M-Quadra/go-python3-submodule/wiki/Compile-Test)
