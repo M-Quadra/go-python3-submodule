@@ -1,14 +1,14 @@
 # go-python3-submodule
 
-English (poorly_(ˊཀˋ」∠)_) | [简体中文](./README_zh-cn.md)
+#### English (poorly_(ˊཀˋ」∠)_) | [简体中文](./README_zh-cn.md)
 
-This is Go bindings for Python3/C API with submodule style. 
+This project is an incorporated submodule of Go binds to Python3/C APIs. 
 
-This project was inspired by [DataDog/go-python3](https://github.com/DataDog/go-python3). Faster compilation with multiple submodules.
+This project is inspired from [DataDog/go-python3](https://github.com/DataDog/go-python3) that has Faster compilation with multiple submodules.
 
 # Installation
 
-Recommend Go modules.
+Go modules are fully preferable.
 
 ```
 go get github.com/M-Quadra/go-python3-submodule/v9
@@ -21,11 +21,11 @@ Python version | Package URL
 
 # Usage
 
-Use as `Python/C API` functions. Eg: `PyBool_Check(x)` call with `pybool.Check`. Let gopls auto autocomplete package import.
+Call as `Python/C API` functions. e.g. `PyBool_Check(x)` call with `pybool.Check`. The gopls will import the rest automately.
 
-Test as example, watch [test](./test)folder.
+A test example, watch [test](./test) folder here.
 
-The function names converted by type. As follows:
+Function names are coming from types. As follow:
 
 Python/C API | Go
 :---:|:---:
@@ -34,7 +34,7 @@ PyLong_AsLong | pylong.AsInt
 PyLong_AsLongLong | pylong.AsInt64
 ... | ...
 
-If you get stuck when running, check the GIL. For single threads try following code:
+If you are confusing while running the code, to check the GIL. For using under a single thread, try following code:
 
 ```
 if !pygilstate.Check() {
@@ -48,7 +48,7 @@ if !pygilstate.Check() {
 // do something...
 ```
 
-In goroutines, just add Lock.
+In goroutines, just add a Lock.
 
 ```
 var _m = sync.Mutex{}
@@ -77,9 +77,9 @@ This is an [example](./test/benchmark/curvefit_test.go).
 
 Development environment: macOS 12.1, python 3.9.
 
-Add most of functions in [DataDog/go-python3](https://github.com/DataDog/go-python3).
+Incorporate the most of the original functions in [DataDog/go-python3](https://github.com/DataDog/go-python3).
 
-Add reference count check for most of test cases.
+Add the counting check in references that cover the most of test cases.
 
 # Todo
 
@@ -89,7 +89,7 @@ Add reference count check for most of test cases.
 
 - Add `PyObject.ob_refcnt` or keep `Py_REFCNT`?
 
-- Reference count check for `Exception`.
+- Check reference counts for `Exception`.
 
 - CI.
 
