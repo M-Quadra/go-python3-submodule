@@ -29,7 +29,7 @@ Python version | Package URL
 
 调用方式同`Python/C API`方法, 如`PyBool_Check(x)`调用方法为`pybool.Check(x)`, 包名由编辑器自动补全。
 
-用例同测试, 见[test](./test)文件夹。
+用例同测试, 见[test](./internal/test)文件夹。
 
 方法名针对数据类型做了部分转换, 具体如下:
 
@@ -77,7 +77,7 @@ func xx() {
 }
 ```
 
-具体用例可参考[此处](./test/benchmark/curvefit_test.go)
+具体用例可参考[此处](./internal/example/scipy)
 
 # 肝
 
@@ -101,7 +101,7 @@ func xx() {
 
 - CI.
 
-# 杂 / Other
+# 杂
 
 [容器测试记录](https://github.com/M-Quadra/go-python3-submodule/wiki/%E5%AE%B9%E5%99%A8%E6%B5%8B%E8%AF%95%E8%AE%B0%E5%BD%95)
 

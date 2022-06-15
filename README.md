@@ -23,7 +23,7 @@ Python version | Package URL
 
 Call as `Python/C API` functions. e.g. `PyBool_Check(x)` call with `pybool.Check`. The gopls will import the rest automately.
 
-A test example, watch [test](./test) folder here.
+A test example, watch [test](./internal/test) folder here.
 
 Function names are coming from types. As follow:
 
@@ -71,7 +71,7 @@ func xx() {
 }
 ```
 
-This is an [example](./test/benchmark/curvefit_test.go).
+This is an [example](./internal/example/scipy).
 
 # Progress
 
