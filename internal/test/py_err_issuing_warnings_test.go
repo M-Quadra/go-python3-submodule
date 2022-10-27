@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v9/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v9/py-exc"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v10/py-exc"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 

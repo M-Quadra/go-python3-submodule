@@ -1,6 +1,6 @@
 package pytuple
 
-import python "github.com/M-Quadra/go-python3-submodule/v9"
+import python "github.com/M-Quadra/go-python3-submodule/v10"
 
 // FromObjects ...*python.PyObject -> *PyTuple
 func FromObjects(objs ...*python.PyObject) *python.PyObject {

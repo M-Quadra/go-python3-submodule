@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
-	pyfloat "github.com/M-Quadra/go-python3-submodule/v9/py-float"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
+	pyfloat "github.com/M-Quadra/go-python3-submodule/v10/py-float"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 

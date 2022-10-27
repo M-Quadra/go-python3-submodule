@@ -17,13 +17,14 @@
 推荐使用 Go Modules
 
 ```
-go get github.com/M-Quadra/go-python3-submodule/v9
+go get github.com/M-Quadra/go-python3-submodule/v10
 ```
 
 Python version | Package URL
 :---:|:---:
-3.9 | github.com/M-Quadra/go-python3-submodule/v9
-3.8 | github.com/M-Quadra/go-python3-submodule/v8
+3.10 | github.com/M-Quadra/go-python3-submodule/v10 
+3.9 | github.com/M-Quadra/go-python3-submodule/v9 
+3.8 | github.com/M-Quadra/go-python3-submodule/v8 
 
 # 润
 

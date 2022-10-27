@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
-	pysys "github.com/M-Quadra/go-python3-submodule/v9/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
+	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
 )
 
 func init() {

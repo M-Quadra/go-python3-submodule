@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pyfloat "github.com/M-Quadra/go-python3-submodule/v9/py-float"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v9/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v9/py-object"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pyfloat "github.com/M-Quadra/go-python3-submodule/v10/py-float"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v10/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
 )
 
 // GetPopt python function

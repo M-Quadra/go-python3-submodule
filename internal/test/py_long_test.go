@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 

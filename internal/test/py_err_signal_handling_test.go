@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
 	"github.com/stretchr/testify/assert"
 )
 

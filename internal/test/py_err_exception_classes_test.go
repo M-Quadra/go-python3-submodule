@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v9/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v9/py-exc"
-	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v10/py-exc"
+	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	pyeval "github.com/M-Quadra/go-python3-submodule/v9/py-eval"
-	pygilstate "github.com/M-Quadra/go-python3-submodule/v9/py-gil-state"
-	pythreadstate "github.com/M-Quadra/go-python3-submodule/v9/py-thread-state"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v10/py-eval"
+	pygilstate "github.com/M-Quadra/go-python3-submodule/v10/py-gil-state"
+	pythreadstate "github.com/M-Quadra/go-python3-submodule/v10/py-thread-state"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -9,7 +9,7 @@ import (
 )
 
 import (
-	python "github.com/M-Quadra/go-python3-submodule/v9"
+	python "github.com/M-Quadra/go-python3-submodule/v10"
 )
 
 // Check PyTuple_Check

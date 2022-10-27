@@ -1,8 +1,8 @@
-module github.com/M-Quadra/go-python3-submodule/v9
+module github.com/M-Quadra/go-python3-submodule/v10
 
-go 1.18
+go 1.19
 
-require github.com/stretchr/testify v1.7.2
+require github.com/stretchr/testify v1.8.1
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

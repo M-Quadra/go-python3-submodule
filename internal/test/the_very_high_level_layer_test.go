@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v9/py-object"
-	pyrun "github.com/M-Quadra/go-python3-submodule/v9/py-run"
-	pysys "github.com/M-Quadra/go-python3-submodule/v9/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v9/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
+	pyrun "github.com/M-Quadra/go-python3-submodule/v10/py-run"
+	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 

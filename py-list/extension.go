@@ -1,8 +1,8 @@
 package pylist
 
 import (
-	python "github.com/M-Quadra/go-python3-submodule/v9"
-	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
+	python "github.com/M-Quadra/go-python3-submodule/v10"
+	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
 )
 
 // FromInts []int -> PyList

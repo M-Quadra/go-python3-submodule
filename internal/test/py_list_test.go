@@ -7,11 +7,11 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/v9/py"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v9/py-err"
-	pylist "github.com/M-Quadra/go-python3-submodule/v9/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/v9/py-long"
-	pytuple "github.com/M-Quadra/go-python3-submodule/v9/py-tuple"
+	"github.com/M-Quadra/go-python3-submodule/v10/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
+	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v10/py-tuple"
 	"github.com/stretchr/testify/assert"
 )
 
