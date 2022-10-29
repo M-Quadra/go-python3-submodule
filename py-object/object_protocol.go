@@ -48,7 +48,7 @@ func GetAttr(o, attrName *python.PyObject) *python.PyObject {
 
 // GetAttrString PyObject_GetAttrString
 func GetAttrString(o *python.PyObject, attrName string) *python.PyObject {
-	if o == nil {
+	if o == nil || len(attrName) <= 0 {
 		return nil
 	}
 
