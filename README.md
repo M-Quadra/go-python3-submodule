@@ -20,7 +20,7 @@ Python version | Package URL
 3.9 | github.com/M-Quadra/go-python3-submodule/v9 
 3.8 | github.com/M-Quadra/go-python3-submodule/v8 
 
-# Usage
+## Usage
 
 Call as `Python/C API` functions. e.g. `PyBool_Check(x)` call with `pybool.Check`. The gopls will import the rest automately.
 
@@ -39,7 +39,7 @@ There are two example for goroutine: [example-0](./internal/example/goroutine-0)
 
 I'd like to use example-0.
 
-# Progress
+## Progress
 
 Development environment: macOS (x86-64).
 
@@ -49,7 +49,7 @@ Incorporate the most of the original functions in [DataDog/go-python3](https://g
 
 Add the counting check in references that cover the most of test cases.
 
-# Todo
+## Todo
 
 - [ ] Unit test of reference counts in `Exception`.
 - [ ] GitHub Action.
