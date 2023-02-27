@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 
 	"github.com/M-Quadra/go-python3-submodule/v11/py"
@@ -36,6 +37,7 @@ func init() {
 	}
 }
 
-func main() {
+var _rand = rand.New(rand.NewSource(114514))
 
+func main() {
 }
