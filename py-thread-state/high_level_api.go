@@ -8,7 +8,7 @@ import (
 )
 
 import (
-	python "github.com/M-Quadra/go-python3-submodule/v10"
+	python "github.com/M-Quadra/go-python3-submodule/v11"
 )
 
 // Get PyThreadState_Get

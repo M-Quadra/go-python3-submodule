@@ -5,16 +5,16 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPySysGetSetObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	nPlatform := pyunicode.FromString("test")
 	defer py.DecRef(nPlatform)
@@ -37,7 +37,7 @@ func TestPySysGetSetObject(t *testing.T) {
 }
 
 func TestPySysWarnOptions(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	str := "ignore"
 	strPy := pyunicode.FromString(str)
@@ -67,7 +67,7 @@ func TestPySysWarnOptions(t *testing.T) {
 }
 
 func TestPySysSetPath(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	path := pysys.GetObject("path")
 	pathRefCnt := py.RefCnt(path)
@@ -84,7 +84,7 @@ func TestPySysSetPath(t *testing.T) {
 }
 
 func TestPySysXOption(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	xOptions := pysys.GetXOptions()
 	xOptionsRefCnt := py.RefCnt(xOptions)

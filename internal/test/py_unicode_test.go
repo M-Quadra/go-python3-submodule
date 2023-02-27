@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pybytes "github.com/M-Quadra/go-python3-submodule/v10/py-bytes"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pytuple "github.com/M-Quadra/go-python3-submodule/v10/py-tuple"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pybytes "github.com/M-Quadra/go-python3-submodule/v11/py-bytes"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v11/py-tuple"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyUnicodeCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pyunicode.Check(nil))
 	assert.False(t, pyunicode.CheckExact(nil))
@@ -35,7 +35,7 @@ func TestPyUnicodeCheck(t *testing.T) {
 }
 
 func TestPyUnicodeNew(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyunicode.New(-1, 'z'))
 	pyerr.Clear()
@@ -49,7 +49,7 @@ func TestPyUnicodeNew(t *testing.T) {
 }
 
 func TestPyUnicodeFromString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	u := pyunicode.FromString("AA")
 	defer py.DecRef(u)
@@ -60,7 +60,7 @@ func TestPyUnicodeFromString(t *testing.T) {
 }
 
 func TestPyUnicodeFromEncodedObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyunicode.FromEncodedObject(nil, "utf-8", "strict"))
 	pyerr.Clear()
@@ -80,7 +80,7 @@ func TestPyUnicodeFromEncodedObject(t *testing.T) {
 }
 
 func TestPyUnicodeGetLength(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, 0, pyunicode.GetLength(nil))
 
@@ -93,7 +93,7 @@ func TestPyUnicodeGetLength(t *testing.T) {
 }
 
 func TestPyUnicodeCopyCharacters(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	uA := pyunicode.FromString("QB鸦")
 	defer py.DecRef(uA)
@@ -115,7 +115,7 @@ func TestPyUnicodeCopyCharacters(t *testing.T) {
 }
 
 func TestPyUnicodeFill(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	u := pyunicode.FromString("aaa")
 	defer py.DecRef(u)
@@ -133,7 +133,7 @@ func TestPyUnicodeFill(t *testing.T) {
 }
 
 func TestPyUnicodeWriteReadChar(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	u := pyunicode.FromString("aaa")
 	defer py.DecRef(u)
@@ -159,7 +159,7 @@ func TestPyUnicodeWriteReadChar(t *testing.T) {
 }
 
 func TestPyUnicodeSubstring(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	uA := pyunicode.FromString("SF")
 	defer py.DecRef(uA)

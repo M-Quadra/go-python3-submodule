@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v10/py-exc"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v11/py-exc"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyErrWarnEx(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.True(t, pyerr.WarnEx(pyexc.RuntimeWarning, "msg", 1))
 
@@ -25,7 +25,7 @@ func TestPyErrWarnEx(t *testing.T) {
 }
 
 func TestPyErrSetImportErrorSubclass(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.SetImportErrorSubclass(nil, nil, nil, nil))
 	pyerr.Clear()
@@ -42,7 +42,7 @@ func TestPyErrSetImportErrorSubclass(t *testing.T) {
 }
 
 func TestPyErrWarnExplicitObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	msg := pyunicode.FromString("msg")
 	defer py.DecRef(msg)
@@ -72,7 +72,7 @@ func TestPyErrWarnExplicitObject(t *testing.T) {
 }
 
 func TestPyErrWarnExplicit(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	msg := pyunicode.FromString("msg")
 	defer py.DecRef(msg)

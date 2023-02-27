@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pybool "github.com/M-Quadra/go-python3-submodule/v10/py-bool"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pybool "github.com/M-Quadra/go-python3-submodule/v11/py-bool"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyBoolCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pybool.Check(nil))
 
@@ -23,7 +23,7 @@ func TestPyBoolCheck(t *testing.T) {
 }
 
 func TestPyBoolFromLong(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	tPy := pybool.FromInt(1)
 	defer py.DecRef(tPy)

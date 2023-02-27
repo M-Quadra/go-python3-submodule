@@ -4,21 +4,21 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pycallable "github.com/M-Quadra/go-python3-submodule/v10/py-callable"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pyeval "github.com/M-Quadra/go-python3-submodule/v10/py-eval"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v10/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
-	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pycallable "github.com/M-Quadra/go-python3-submodule/v11/py-callable"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v11/py-eval"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v11/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v11/py-object"
+	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyImportImportModule(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	os := pyimport.ImportModule("os")
 	defer py.DecRef(os)
@@ -29,7 +29,7 @@ func TestPyImportImportModule(t *testing.T) {
 }
 
 func TestPyImportImportModuleEx(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	os := pyimport.ImportModuleEx("os", nil, nil, nil)
 	defer py.DecRef(os)
@@ -40,7 +40,7 @@ func TestPyImportImportModuleEx(t *testing.T) {
 }
 
 func TestPyImportImportModuleLevelObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.ImportModuleLevelObject(nil, nil, nil, nil, 0))
 	pyerr.Clear()
@@ -57,7 +57,7 @@ func TestPyImportImportModuleLevelObject(t *testing.T) {
 }
 
 func TestPyImportImportModuleLevel(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	math := pyimport.ImportModuleLevel("math", nil, nil, nil, 0)
 	defer py.DecRef(math)
@@ -68,7 +68,7 @@ func TestPyImportImportModuleLevel(t *testing.T) {
 }
 
 func TestPyImportImport(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.Import(nil))
 
@@ -84,7 +84,7 @@ func TestPyImportImport(t *testing.T) {
 }
 
 func TestPyImportReloadModule(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.ReloadModule(nil))
 
@@ -105,7 +105,7 @@ func TestPyImportReloadModule(t *testing.T) {
 }
 
 func TestPyImportAddModule(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.AddModuleObject(nil))
 
@@ -136,7 +136,7 @@ func TestPyImportAddModule(t *testing.T) {
 }
 
 func TestPyImportExecCodeModule(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.ExecCodeModule("", nil))
 
@@ -166,7 +166,7 @@ func TestPyImportExecCodeModule(t *testing.T) {
 }
 
 func TestPyImportExecCodeModuleEx(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.ExecCodeModuleEx("", nil, ""))
 
@@ -196,7 +196,7 @@ func TestPyImportExecCodeModuleEx(t *testing.T) {
 }
 
 func TestPyImportExecCodeModuleObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	// [DataDog/go-python3]: fake module
 	source := pyunicode.FromString("__version__ = '2.0'")
@@ -244,7 +244,7 @@ func TestPyImportExecCodeModuleObject(t *testing.T) {
 }
 
 func TestPyImportExecCodeModuleWithPathnames(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	// [DataDog/go-python3]: fake module
 	source := pyunicode.FromString("__version__ = '2.0'")
@@ -274,19 +274,19 @@ func TestPyImportExecCodeModuleWithPathnames(t *testing.T) {
 }
 
 func TestPyImportGetMagicNumber(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.NotNil(t, pyimport.GetMagicNumber())
 }
 
 func TestPyImportGetMagicTag(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.NotNil(t, pyimport.GetMagicTag())
 }
 
 func TestPyImportGetModuleDict(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	dicA := pyimport.GetModuleDict()
 	assert.True(t, pydict.Check(dicA))
@@ -301,7 +301,7 @@ func TestPyImportGetModuleDict(t *testing.T) {
 }
 
 func TestPyImportGetModule(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyimport.GetModule(nil))
 
@@ -326,7 +326,7 @@ func TestPyImportGetModule(t *testing.T) {
 }
 
 func TestPyImportGetImporter(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pathList := pysys.GetObject("path")
 	pathListRefCnt := py.RefCnt(pathList)

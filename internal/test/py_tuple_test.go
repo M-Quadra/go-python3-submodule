@@ -5,16 +5,16 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
-	pytuple "github.com/M-Quadra/go-python3-submodule/v10/py-tuple"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v11/py-long"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v11/py-tuple"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyTupleCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pytuple.Check(nil)
 	pytuple.CheckExact(nil)
@@ -34,7 +34,7 @@ func TestPyTupleCheck(t *testing.T) {
 }
 
 func TestPyTupleNew(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	tuple := pytuple.New(0)
 	defer py.DecRef(tuple)
@@ -44,7 +44,7 @@ func TestPyTupleNew(t *testing.T) {
 }
 
 func TestPyTupleSize(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Zero(t, pytuple.Size(nil))
 
@@ -57,7 +57,7 @@ func TestPyTupleSize(t *testing.T) {
 }
 
 func TestPyTupleGetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pytuple.GetItem(nil, 0))
 
@@ -79,7 +79,7 @@ func TestPyTupleGetItem(t *testing.T) {
 }
 
 func TestPyTupleGetSlice(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pytuple.GetSlice(nil, 0, 0)) // SystemError: Objects/tupleobject.c:455: bad argument to internal function
 	pyerr.Clear()
@@ -102,7 +102,7 @@ func TestPyTupleGetSlice(t *testing.T) {
 }
 
 func TestPyTupleSetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	vRand := rand.Intn(1000)
 	v := pylong.FromInt(vRand)

@@ -9,9 +9,9 @@ import (
 )
 
 import (
-	python "github.com/M-Quadra/go-python3-submodule/v10"
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	python "github.com/M-Quadra/go-python3-submodule/v11"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 )
 
 // Check PyFloat_Check

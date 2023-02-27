@@ -7,7 +7,7 @@ import (
 	"C"
 )
 
-import python "github.com/M-Quadra/go-python3-submodule/v10"
+import python "github.com/M-Quadra/go-python3-submodule/v11"
 
 // AsString PyUnicode_AsUTF8
 func AsString(unicode *python.PyObject) string {

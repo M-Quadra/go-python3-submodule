@@ -6,13 +6,13 @@ import (
 	"runtime"
 	"sync"
 
-	python "github.com/M-Quadra/go-python3-submodule/v10"
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyeval "github.com/M-Quadra/go-python3-submodule/v10/py-eval"
-	pygilstate "github.com/M-Quadra/go-python3-submodule/v10/py-gil-state"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	python "github.com/M-Quadra/go-python3-submodule/v11"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v11/py-eval"
+	pygilstate "github.com/M-Quadra/go-python3-submodule/v11/py-gil-state"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 )
 
 func init() {

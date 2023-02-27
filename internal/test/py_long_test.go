@@ -7,14 +7,14 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pylong "github.com/M-Quadra/go-python3-submodule/v11/py-long"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyLongCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylong.Check(nil))
 	assert.False(t, pylong.CheckExact(nil))
@@ -29,7 +29,7 @@ func TestPyLongCheck(t *testing.T) {
 }
 
 func TestPyLongFromAsInt(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, -1, pylong.AsInt(nil))
 
@@ -43,7 +43,7 @@ func TestPyLongFromAsInt(t *testing.T) {
 }
 
 func TestPyLongFromAsUint(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, uint(math.MaxUint), pylong.AsUint(nil))
 
@@ -57,7 +57,7 @@ func TestPyLongFromAsUint(t *testing.T) {
 }
 
 func TestPyLongFromAsInt64(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, int64(-1), pylong.AsInt64(nil))
 
@@ -71,7 +71,7 @@ func TestPyLongFromAsInt64(t *testing.T) {
 }
 
 func TestPyLongFromAsUint64(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, uint64(math.MaxUint64), pylong.AsUint64(nil))
 
@@ -85,7 +85,7 @@ func TestPyLongFromAsUint64(t *testing.T) {
 }
 
 func TestPyLongFromAsFloat64(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, -1.0, pylong.AsFloat64(nil))
 
@@ -99,7 +99,7 @@ func TestPyLongFromAsFloat64(t *testing.T) {
 }
 
 func TestPyLongFromString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	vRand := rand.Intn(1000)
 	v := pylong.FromString(strconv.Itoa(vRand), 10)
@@ -111,7 +111,7 @@ func TestPyLongFromString(t *testing.T) {
 }
 
 func TestPyLongFromUnicode(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pylong.FromUnicodeObject(nil, 10))
 

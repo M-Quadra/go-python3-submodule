@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"testing"
 
-	pyeval "github.com/M-Quadra/go-python3-submodule/v10/py-eval"
-	pygilstate "github.com/M-Quadra/go-python3-submodule/v10/py-gil-state"
-	pythreadstate "github.com/M-Quadra/go-python3-submodule/v10/py-thread-state"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v11/py-eval"
+	pygilstate "github.com/M-Quadra/go-python3-submodule/v11/py-gil-state"
+	pythreadstate "github.com/M-Quadra/go-python3-submodule/v11/py-thread-state"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyEvalInitThreads(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyeval.InitThreads()
 	assert.True(t, pyeval.ThreadsInitialized())
@@ -19,7 +19,7 @@ func TestPyEvalInitThreads(t *testing.T) {
 }
 
 func TestPyGILState(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	if !pygilstate.Check() {
 		save := pyeval.SaveThread()
@@ -33,7 +33,7 @@ func TestPyGILState(t *testing.T) {
 }
 
 func TestPyThreadState(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	if !pygilstate.Check() {
 		save := pyeval.SaveThread()
@@ -52,7 +52,7 @@ func TestPyThreadState(t *testing.T) {
 }
 
 func TestPyEvalSaveRestoreThread(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	threadState := pyeval.SaveThread()
 	defer pyeval.RestoreThread(threadState)

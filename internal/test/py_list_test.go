@@ -7,16 +7,16 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
-	pytuple "github.com/M-Quadra/go-python3-submodule/v10/py-tuple"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v11/py-long"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v11/py-tuple"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyListCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylist.Check(nil))
 	assert.False(t, pylist.CheckExact(nil))
@@ -33,7 +33,7 @@ func TestPyListCheck(t *testing.T) {
 }
 
 func TestPyListSize(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, 0, pylist.Size(nil))
 
@@ -46,7 +46,7 @@ func TestPyListSize(t *testing.T) {
 }
 
 func TestPyListGetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pylist.GetItem(nil, 0))
 
@@ -61,7 +61,7 @@ func TestPyListGetItem(t *testing.T) {
 }
 
 func TestPyListSetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylist.SetItem(nil, 0, nil))
 
@@ -75,7 +75,7 @@ func TestPyListSetItem(t *testing.T) {
 }
 
 func TestPyListInsert(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylist.Insert(nil, 0, nil))
 
@@ -101,7 +101,7 @@ func TestPyListInsert(t *testing.T) {
 }
 
 func TestPyListAppend(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylist.Append(nil, nil))
 
@@ -127,7 +127,7 @@ func TestPyListAppend(t *testing.T) {
 }
 
 func TestPyListGetSlice(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pylist.GetSlice(nil, 1, 2))
 
@@ -164,7 +164,7 @@ func TestPyListGetSlice(t *testing.T) {
 }
 
 func TestPyListSort(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylist.Sort(nil))
 	pyerr.Clear()
@@ -187,7 +187,7 @@ func TestPyListSort(t *testing.T) {
 }
 
 func TestPyListReverse(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pylist.Reverse(nil))
 
@@ -208,7 +208,7 @@ func TestPyListReverse(t *testing.T) {
 }
 
 func TestPyListAsTuple(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pylist.AsTuple(nil))
 

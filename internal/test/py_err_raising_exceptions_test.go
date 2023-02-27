@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v10/py-exc"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v11/py-exc"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyErrSetString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.Occurred())
 
@@ -27,7 +27,7 @@ func TestPyErrSetString(t *testing.T) {
 }
 
 func TestPyErrSetObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyerr.SetObject(nil, nil)
 	assert.Nil(t, pyerr.Occurred())
@@ -43,7 +43,7 @@ func TestPyErrSetObject(t *testing.T) {
 }
 
 func TestPyErrSetNone(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.Occurred())
 
@@ -70,7 +70,7 @@ func TestPyErrSetNone(t *testing.T) {
 }
 
 func TestPyErrBadArgument(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.Occurred())
 
@@ -82,7 +82,7 @@ func TestPyErrBadArgument(t *testing.T) {
 }
 
 func TestPyErrNoMemory(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.Occurred())
 
@@ -94,7 +94,7 @@ func TestPyErrNoMemory(t *testing.T) {
 }
 
 func TestPyErrSetImportError(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.SetImportError(nil, nil, nil))
 	pyerr.Clear()
@@ -109,7 +109,7 @@ func TestPyErrSetImportError(t *testing.T) {
 }
 
 func TestPyErrSyntaxLocationObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyerr.Clear()
 
@@ -133,7 +133,7 @@ func TestPyErrSyntaxLocationObject(t *testing.T) {
 }
 
 func TestPyErrSyntaxLocationEx(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyerr.Clear()
 	pyerr.SyntaxLocationEx("", 0, 0)
@@ -147,7 +147,7 @@ func TestPyErrSyntaxLocationEx(t *testing.T) {
 }
 
 func TestPyErrSyntaxLocation(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyerr.Clear()
 	pyerr.SyntaxLocation("test.py", 0)
@@ -161,7 +161,7 @@ func TestPyErrSyntaxLocation(t *testing.T) {
 }
 
 func TestPyErrBadInternalCall(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyerr.Clear()
 

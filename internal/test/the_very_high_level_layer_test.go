@@ -5,23 +5,23 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
-	pyrun "github.com/M-Quadra/go-python3-submodule/v10/py-run"
-	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v11/py-object"
+	pyrun "github.com/M-Quadra/go-python3-submodule/v11/py-run"
+	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 // func TestPyMain(t *testing.T) {
-// 	fmt.Println(assert.CallerInfo()[0])
+// 	fmt.Println("current:", assert.CallerInfo()[0])
 
 // 	fmt.Println("???")
 // 	py.Main("test.py")
 // }
 
 func TestPyfunc(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	exitCode, err := pyrun.AnyFile("test_233.py")
 	assert.NotNil(t, err)
@@ -52,7 +52,7 @@ var (
 )
 
 func TestPyRunSimpleString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	exitCode := pyrun.SimpleString(_testPy)
 	assert.Equal(t, 0, exitCode)

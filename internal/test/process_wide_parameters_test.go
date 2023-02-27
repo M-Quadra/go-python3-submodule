@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyGetSetProgramName(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	defaultName := py.GetProgramName()
 	assert.Equal(t, "python3", defaultName)
@@ -27,7 +27,7 @@ func TestPyGetSetProgramName(t *testing.T) {
 }
 
 func TestPyGetPrefix(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	prefix := py.GetPrefix()
 	fmt.Println(prefix)
@@ -35,14 +35,14 @@ func TestPyGetPrefix(t *testing.T) {
 }
 
 func TestPyGetExecPrefix(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	execPrefix := py.GetExecPrefix()
 	fmt.Println(execPrefix)
 }
 
 func TestPyGetProgramFullPath(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	fullPath := py.GetProgramFullPath()
 	fmt.Println(fullPath)
@@ -50,7 +50,7 @@ func TestPyGetProgramFullPath(t *testing.T) {
 }
 
 func TestPyGetSetPath(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	defaultPath := py.GetPath()
 	defer py.SetPath(defaultPath)
@@ -61,7 +61,7 @@ func TestPyGetSetPath(t *testing.T) {
 }
 
 func TestPyGetVersion(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	version := py.GetVersion()
 	fmt.Println(version)
@@ -69,7 +69,7 @@ func TestPyGetVersion(t *testing.T) {
 }
 
 func TestPyGetPlatform(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	platform := py.GetPlatform()
 	fmt.Println(platform)
@@ -77,7 +77,7 @@ func TestPyGetPlatform(t *testing.T) {
 }
 
 func TestPyGetCopyright(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	copyright := py.GetCopyright()
 	fmt.Println(copyright)
@@ -85,7 +85,7 @@ func TestPyGetCopyright(t *testing.T) {
 }
 
 func TestPyGetCompiler(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	compiler := py.GetCompiler()
 	fmt.Println(compiler)
@@ -93,7 +93,7 @@ func TestPyGetCompiler(t *testing.T) {
 }
 
 func TestPyGetBuildInfo(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	buildInfo := py.GetBuildInfo()
 	fmt.Println(buildInfo)
@@ -101,7 +101,7 @@ func TestPyGetBuildInfo(t *testing.T) {
 }
 
 func TestPySysSetArgvEx(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	{ // argv recovery
 		path := pysys.GetObject("path")
@@ -130,7 +130,7 @@ func TestPySysSetArgvEx(t *testing.T) {
 }
 
 func TestPySysSetArgv(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	{ // path recovery
 		path := pysys.GetObject("path")
@@ -174,7 +174,7 @@ func TestPySysSetArgv(t *testing.T) {
 }
 
 func TestPyGetSetPythonHome(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	defaultHome := py.GetPythonHome()
 	defer py.SetPythonHome(defaultHome)

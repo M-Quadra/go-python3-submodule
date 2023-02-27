@@ -10,7 +10,7 @@ import (
 import (
 	"unsafe"
 
-	python "github.com/M-Quadra/go-python3-submodule/v10"
+	python "github.com/M-Quadra/go-python3-submodule/v11"
 )
 
 // EnterRecursiveCall Py_EnterRecursiveCall

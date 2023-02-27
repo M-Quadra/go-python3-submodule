@@ -5,13 +5,13 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pybytearray "github.com/M-Quadra/go-python3-submodule/v10/py-byte-array"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pybytearray "github.com/M-Quadra/go-python3-submodule/v11/py-byte-array"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyByteArrayCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pybytearray.Check(nil))
 	assert.False(t, pybytearray.CheckExact(nil))
@@ -25,7 +25,7 @@ func TestPyByteArrayCheck(t *testing.T) {
 }
 
 func TestPyByteArrayFromString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	str := "鹰语"
 
@@ -37,7 +37,7 @@ func TestPyByteArrayFromString(t *testing.T) {
 }
 
 func TestPyByteArrayConcat(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pybytearray.Concat(nil, nil))
 
@@ -75,7 +75,7 @@ func TestPyByteArrayConcat(t *testing.T) {
 }
 
 func TestPyByteArrayResize(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pybytearray.Resize(nil, 0)
 

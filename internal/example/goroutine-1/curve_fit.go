@@ -6,15 +6,15 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pyeval "github.com/M-Quadra/go-python3-submodule/v10/py-eval"
-	pyfloat "github.com/M-Quadra/go-python3-submodule/v10/py-float"
-	pygilstate "github.com/M-Quadra/go-python3-submodule/v10/py-gil-state"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v10/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
-	pysys "github.com/M-Quadra/go-python3-submodule/v10/py-sys"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pyeval "github.com/M-Quadra/go-python3-submodule/v11/py-eval"
+	pyfloat "github.com/M-Quadra/go-python3-submodule/v11/py-float"
+	pygilstate "github.com/M-Quadra/go-python3-submodule/v11/py-gil-state"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v11/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v11/py-object"
+	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 )
 
 func init() {

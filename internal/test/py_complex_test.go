@@ -6,18 +6,18 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pycallable "github.com/M-Quadra/go-python3-submodule/v10/py-callable"
-	pycomplex "github.com/M-Quadra/go-python3-submodule/v10/py-complex"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v10/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
-	pytuple "github.com/M-Quadra/go-python3-submodule/v10/py-tuple"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pycallable "github.com/M-Quadra/go-python3-submodule/v11/py-callable"
+	pycomplex "github.com/M-Quadra/go-python3-submodule/v11/py-complex"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v11/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v11/py-object"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v11/py-tuple"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyComplexCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pycomplex.Check(nil))
 	assert.False(t, pycomplex.CheckExact(nil))
@@ -38,7 +38,7 @@ func TestPyComplexCheck(t *testing.T) {
 }
 
 func TestPyComplexFrom(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Zero(t, pycomplex.RealAsFloat64(nil))
 	assert.Zero(t, pycomplex.ImagAsFloat64(nil))

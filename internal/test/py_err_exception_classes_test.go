@@ -6,16 +6,16 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v10/py-exc"
-	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v11/py-exc"
+	pylong "github.com/M-Quadra/go-python3-submodule/v11/py-long"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyErrNewException(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.NewException("", nil, nil))
 	assert.Nil(t, pyerr.NewException("module.class", nil, nil))
@@ -68,7 +68,7 @@ func TestPyErrNewException(t *testing.T) {
 }
 
 func TestPyErrNewExceptionWithDoc(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pyerr.NewExceptionWithDoc("", "", nil, nil))
 	pyerr.Clear()

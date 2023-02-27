@@ -5,16 +5,16 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v10/py-import"
-	pymodule "github.com/M-Quadra/go-python3-submodule/v10/py-module"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v11/py-import"
+	pymodule "github.com/M-Quadra/go-python3-submodule/v11/py-module"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyModuleCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pymodule.Check(nil))
 	assert.False(t, pymodule.CheckExact(nil))
@@ -27,7 +27,7 @@ func TestPyModuleCheck(t *testing.T) {
 }
 
 func TestPyModuleNewObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pymodule.NewObject(nil))
 
@@ -50,7 +50,7 @@ func TestPyModuleNewObject(t *testing.T) {
 }
 
 func TestPyModuleNew(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	name := "test_module"
 
@@ -66,7 +66,7 @@ func TestPyModuleNew(t *testing.T) {
 }
 
 func TestPyModuleGetDict(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pymodule.GetDict(nil))
 
@@ -81,7 +81,7 @@ func TestPyModuleGetDict(t *testing.T) {
 }
 
 func TestPyModuleGetNameObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pymodule.GetNameObject(nil))
 
@@ -101,7 +101,7 @@ func TestPyModuleGetNameObject(t *testing.T) {
 }
 
 func TestPyModuleGetName(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, "", pymodule.GetName(nil))
 
@@ -116,7 +116,7 @@ func TestPyModuleGetName(t *testing.T) {
 }
 
 func TestPyModuleGetState(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.True(t, pymodule.GetState(nil) == nil)
 
@@ -130,7 +130,7 @@ func TestPyModuleGetState(t *testing.T) {
 }
 
 func TestPyModuleGetFilenameObject(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pymodule.GetFilenameObject(nil))
 
@@ -148,7 +148,7 @@ func TestPyModuleGetFilenameObject(t *testing.T) {
 }
 
 func TestPyModuleGetFilename(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, "", pymodule.GetFilename(nil))
 

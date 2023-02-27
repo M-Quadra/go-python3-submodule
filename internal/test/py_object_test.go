@@ -5,20 +5,21 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
-	pyexc "github.com/M-Quadra/go-python3-submodule/v10/py-exc"
-	pyimport "github.com/M-Quadra/go-python3-submodule/v10/py-import"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
-	pyobject "github.com/M-Quadra/go-python3-submodule/v10/py-object"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
+	pyexc "github.com/M-Quadra/go-python3-submodule/v11/py-exc"
+	pyimport "github.com/M-Quadra/go-python3-submodule/v11/py-import"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v11/py-long"
+	pyobject "github.com/M-Quadra/go-python3-submodule/v11/py-object"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestPyObjectHasAttr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	name := pyunicode.FromString("stdout")
 	defer py.DecRef(name)
@@ -38,7 +39,7 @@ func TestPyObjectHasAttr(t *testing.T) {
 }
 
 func TestPyObjectHasAttrString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	sys := pyimport.ImportModule("sys")
 	defer py.DecRef(sys)
@@ -52,7 +53,7 @@ func TestPyObjectHasAttrString(t *testing.T) {
 }
 
 func TestPyObjectGetAttr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	name := pyunicode.FromString("stdout")
 	defer py.DecRef(name)
@@ -72,7 +73,7 @@ func TestPyObjectGetAttr(t *testing.T) {
 }
 
 func TestPyObjectGetAttrString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	name := pyimport.ImportModule("sys")
 	defer py.DecRef(name)
@@ -86,12 +87,12 @@ func TestPyObjectGetAttrString(t *testing.T) {
 }
 
 func TestPyObjectGenericGetAttr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 }
 
 func TestPyObjectSetAttr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	sys := pyimport.ImportModule("sys")
 	defer py.DecRef(sys)
@@ -117,7 +118,7 @@ func TestPyObjectSetAttr(t *testing.T) {
 }
 
 func TestPyObjectSetAttrString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	sys := pyimport.ImportModule("sys")
 	defer py.DecRef(sys)
@@ -147,12 +148,12 @@ func TestPyObjectSetAttrString(t *testing.T) {
 }
 
 func TestPyObjectGenericSetAttr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 }
 
 func TestPyObjectDelAttr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	sys := pyimport.ImportModule("sys")
 	defer py.DecRef(sys)
@@ -178,7 +179,7 @@ func TestPyObjectDelAttr(t *testing.T) {
 }
 
 func TestPyObjectDelAttrString(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	sys := pyimport.ImportModule("sys")
 	defer py.DecRef(sys)
@@ -200,7 +201,7 @@ func TestPyObjectDelAttrString(t *testing.T) {
 }
 
 func TestPyObjectRichCompare(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	strA := pyunicode.FromString("strA")
 	defer py.DecRef(strA)
@@ -223,7 +224,7 @@ func TestPyObjectRichCompare(t *testing.T) {
 }
 
 func TestPyObjectRichCompareBool(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	strA := pyunicode.FromString("strA")
 	defer py.DecRef(strA)
@@ -247,7 +248,7 @@ func TestPyObjectRichCompareBool(t *testing.T) {
 }
 
 func TestPyObjectRepr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
@@ -265,7 +266,7 @@ func TestPyObjectRepr(t *testing.T) {
 }
 
 func TestPyObjectASCII(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
@@ -283,7 +284,7 @@ func TestPyObjectASCII(t *testing.T) {
 }
 
 func TestPyObjectStr(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
@@ -302,12 +303,12 @@ func TestPyObjectStr(t *testing.T) {
 }
 
 func TestPyObjectBytes(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 }
 
 func TestPyObjectIsSubclass(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
@@ -323,7 +324,7 @@ func TestPyObjectIsSubclass(t *testing.T) {
 }
 
 func TestPyObjectIsInstance(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
@@ -335,7 +336,7 @@ func TestPyObjectIsInstance(t *testing.T) {
 }
 
 func TestPyObjectHash(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	str := pyunicode.FromString("test string")
 	defer py.DecRef(str)
@@ -347,7 +348,7 @@ func TestPyObjectHash(t *testing.T) {
 }
 
 func TestPyObjectHashNotImplemented(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	str := pyunicode.FromString("test string")
 	defer py.DecRef(str)
@@ -362,7 +363,7 @@ func TestPyObjectHashNotImplemented(t *testing.T) {
 }
 
 func TestPyObjectIsTrue(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, 1, pyobject.IsTrue(py.True))
 	assert.Equal(t, 0, pyobject.IsTrue(py.False))
@@ -371,7 +372,7 @@ func TestPyObjectIsTrue(t *testing.T) {
 }
 
 func TestPyObjectNot(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, 0, pyobject.Not(py.True))
 	assert.Equal(t, 1, pyobject.Not(py.False))
@@ -380,7 +381,7 @@ func TestPyObjectNot(t *testing.T) {
 }
 
 func TestPyObjectType(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	v := pylong.FromInt(rand.Int())
 	defer py.DecRef(v)
@@ -393,7 +394,7 @@ func TestPyObjectType(t *testing.T) {
 }
 
 func TestPyObjectSize(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	v := pylong.FromInt(rand.Int())
 	defer py.DecRef(v)
@@ -415,7 +416,7 @@ func TestPyObjectSize(t *testing.T) {
 }
 
 func TestPyObjectLength(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	v := pylong.FromInt(rand.Int())
 	defer py.DecRef(v)
@@ -437,7 +438,7 @@ func TestPyObjectLength(t *testing.T) {
 }
 
 func TestPyObjectLengthHint(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	l := rand.Intn(100)
 	list := pylist.New(l)
@@ -456,7 +457,7 @@ func TestPyObjectLengthHint(t *testing.T) {
 }
 
 func TestPyObjectGetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	key := pyunicode.FromString("k")
 	defer py.DecRef(key)
@@ -493,7 +494,7 @@ func TestPyObjectGetItem(t *testing.T) {
 }
 
 func TestPyObjectSetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	key := pyunicode.FromString("k")
 	defer py.DecRef(key)
@@ -521,7 +522,7 @@ func TestPyObjectSetItem(t *testing.T) {
 }
 
 func TestPyObjectDelItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	key := pyunicode.FromString("k")
 	defer py.DecRef(key)
@@ -555,26 +556,26 @@ func TestPyObjectDelItem(t *testing.T) {
 }
 
 func TestPyObjectDir(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	list := pylist.New(0)
 	defer py.DecRef(list)
-	defer func() { assert.Equal(t, 1, py.RefCnt(list)) }()
+	defer func() { require.Equal(t, 1, py.RefCnt(list)) }()
 
 	dirPy := pyobject.Dir(list)
 	defer py.DecRef(dirPy)
-	defer func() { assert.Equal(t, 1, py.RefCnt(dirPy)) }()
+	defer func() { require.Equal(t, 1, py.RefCnt(dirPy)) }()
 
 	reprPy := pyobject.Repr(dirPy)
 	defer py.DecRef(reprPy)
-	defer func() { assert.Equal(t, 1, py.RefCnt(reprPy)) }()
+	defer func() { require.Equal(t, 1, py.RefCnt(reprPy)) }()
 
 	str := "['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']"
-	assert.Equal(t, str, pyunicode.AsString(reprPy))
+	require.Equal(t, str, pyunicode.AsString(reprPy))
 }
 
 func TestPyObjectGetIter(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	v := pylong.FromInt(rand.Int())
 	defer py.DecRef(v)

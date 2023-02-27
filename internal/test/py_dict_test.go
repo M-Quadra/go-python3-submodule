@@ -6,17 +6,17 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/M-Quadra/go-python3-submodule/v10/py"
-	pydict "github.com/M-Quadra/go-python3-submodule/v10/py-dict"
-	pylist "github.com/M-Quadra/go-python3-submodule/v10/py-list"
-	pylong "github.com/M-Quadra/go-python3-submodule/v10/py-long"
-	pytuple "github.com/M-Quadra/go-python3-submodule/v10/py-tuple"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v10/py-unicode"
+	"github.com/M-Quadra/go-python3-submodule/v11/py"
+	pydict "github.com/M-Quadra/go-python3-submodule/v11/py-dict"
+	pylist "github.com/M-Quadra/go-python3-submodule/v11/py-list"
+	pylong "github.com/M-Quadra/go-python3-submodule/v11/py-long"
+	pytuple "github.com/M-Quadra/go-python3-submodule/v11/py-tuple"
+	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyDictCheck(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.False(t, pydict.Check(nil))
 	assert.False(t, pydict.Check(py.None))
@@ -38,7 +38,7 @@ func TestPyDictCheck(t *testing.T) {
 }
 
 func TestPyDictProxyNew(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pydict.ProxyNew(nil))
 	assert.Nil(t, pydict.ProxyNew(py.None))
@@ -61,7 +61,7 @@ func TestPyDictProxyNew(t *testing.T) {
 }
 
 func TestPyDictClear(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pydict.Clear(nil)
 
@@ -88,7 +88,7 @@ func TestPyDictClear(t *testing.T) {
 }
 
 func TestPyDictContains(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	k := pylong.FromInt(rand.Intn(100))
 	defer py.DecRef(k)
@@ -108,7 +108,7 @@ func TestPyDictContains(t *testing.T) {
 }
 
 func TestPyDictCopy(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pydict.Copy(nil))
 
@@ -134,7 +134,7 @@ func TestPyDictCopy(t *testing.T) {
 }
 
 func TestPyDictSetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	k := pylong.FromInt(rand.Intn(100))
 	defer py.DecRef(k)
@@ -154,7 +154,7 @@ func TestPyDictSetItem(t *testing.T) {
 }
 
 func TestPyDictDelItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	k := pylong.FromInt(rand.Intn(100))
 	defer py.DecRef(k)
@@ -187,7 +187,7 @@ func TestPyDictDelItem(t *testing.T) {
 }
 
 func TestPyDictGetItem(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	k := pylong.FromInt(rand.Intn(100))
 	defer py.DecRef(k)
@@ -217,7 +217,7 @@ func TestPyDictGetItem(t *testing.T) {
 }
 
 func TestPyDictSetDefault(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	kRand := rand.Intn(100)
 	k := pylong.FromInt(kRand)
@@ -246,7 +246,7 @@ func TestPyDictSetDefault(t *testing.T) {
 }
 
 func TestPyDictItems(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pydict.Items(nil))
 
@@ -285,7 +285,7 @@ func TestPyDictItems(t *testing.T) {
 }
 
 func TestPyDictKeys(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pydict.Keys(nil))
 
@@ -311,7 +311,7 @@ func TestPyDictKeys(t *testing.T) {
 }
 
 func TestPyDictValues(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Nil(t, pydict.Values(nil))
 
@@ -337,7 +337,7 @@ func TestPyDictValues(t *testing.T) {
 }
 
 func TestPyDictSize(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	assert.Equal(t, -1, pydict.Size(nil))
 

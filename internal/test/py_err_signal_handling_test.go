@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"testing"
 
-	pyerr "github.com/M-Quadra/go-python3-submodule/v10/py-err"
+	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPyErrCheckSignals(t *testing.T) {
-	fmt.Println(assert.CallerInfo()[0])
+	fmt.Println("current:", assert.CallerInfo()[0])
 
 	pyerr.SetInterrupt()
 
