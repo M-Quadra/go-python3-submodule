@@ -12,7 +12,7 @@ import python "github.com/M-Quadra/go-python3-submodule/v11"
 
 // Py_Is
 
-// Py_IsNone
+// IsNone Py_IsNone
 func IsNone(o *python.PyObject) bool {
 	return C.Py_IsNone(toC(o)) != 0
 }
