@@ -9,21 +9,22 @@ import (
 	pysys "github.com/M-Quadra/go-python3-submodule/v11/py-sys"
 	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestPyGetSetProgramName(t *testing.T) {
 	fmt.Println("current:", assert.CallerInfo()[0])
 
 	defaultName := py.GetProgramName()
-	assert.Equal(t, "python3", defaultName)
+	require.Equal(t, "python3", defaultName)
 	defer py.SetProgramName(defaultName)
 
 	name := "py3∑åß∂"
 	py.SetProgramName(name)
-	assert.Equal(t, name, py.GetProgramName())
+	require.Equal(t, name, py.GetProgramName())
 
 	py.SetProgramName("")
-	assert.Equal(t, name, py.GetProgramName())
+	require.Equal(t, "", py.GetProgramName())
 }
 
 func TestPyGetPrefix(t *testing.T) {
@@ -31,7 +32,7 @@ func TestPyGetPrefix(t *testing.T) {
 
 	prefix := py.GetPrefix()
 	fmt.Println(prefix)
-	assert.True(t, len(prefix) > 0)
+	require.True(t, len(prefix) > 0)
 }
 
 func TestPyGetExecPrefix(t *testing.T) {
