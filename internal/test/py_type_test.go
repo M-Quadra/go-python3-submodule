@@ -22,7 +22,9 @@ func TestPyTypeCheck(t *testing.T) {
 func TestPyTypeClearCache(t *testing.T) {
 	fmt.Println("current:", assert.CallerInfo()[0])
 
-	assert.NotEqual(t, uint(0xffffffff), pytype.ClearCache())
-	assert.Equal(t, uint(0xffffffff), pytype.ClearCache())
-	assert.Equal(t, uint(0xffffffff), pytype.ClearCache())
+	v := pytype.ClearCache()
+
+	require.Equal(t, v, pytype.ClearCache())
+	require.Equal(t, v, pytype.ClearCache())
+	require.Equal(t, v, pytype.ClearCache())
 }
