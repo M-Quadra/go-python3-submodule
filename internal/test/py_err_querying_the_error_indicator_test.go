@@ -8,7 +8,6 @@ import (
 	pyerr "github.com/M-Quadra/go-python3-submodule/v11/py-err"
 	pyexc "github.com/M-Quadra/go-python3-submodule/v11/py-exc"
 	pyobject "github.com/M-Quadra/go-python3-submodule/v11/py-object"
-	pyunicode "github.com/M-Quadra/go-python3-submodule/v11/py-unicode"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -108,9 +107,9 @@ func TestPyErrGetSetExcInfo(t *testing.T) {
 	require.NotNil(t, pyerr.Occurred())
 
 	exc, value, traceback := pyerr.GetExcInfo()
-	assert.True(t, pyerr.GivenExceptionMatches(exc, py.None), pyunicode.AsString(pyobject.Repr(value)))
-	assert.Nil(t, value)
-	assert.Nil(t, traceback)
+	require.True(t, pyerr.GivenExceptionMatches(exc, py.None))
+	require.True(t, py.IsNone(value))
+	require.True(t, py.IsNone(traceback))
 
 	pyerr.SetExcInfo(exc, value, traceback)
 	pyerr.Print()

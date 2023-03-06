@@ -12,21 +12,26 @@
 
 历史的倒车再次启动, 分离子模块, 先完成API绑定。
 
-## 莽
 
-推荐使用 Go Modules
+
+## 安装
+
+### Go Modules
 
 ```
-go get github.com/M-Quadra/go-python3-submodule/v10
+go get github.com/M-Quadra/go-python3-submodule/v11
 ```
 
 Python version | Package URL
 :---:|:---:
+3.11 | github.com/M-Quadra/go-python3-submodule/v11 
 3.10 | github.com/M-Quadra/go-python3-submodule/v10 
 3.9 | github.com/M-Quadra/go-python3-submodule/v9 
 3.8 | github.com/M-Quadra/go-python3-submodule/v8 
 
-## 润
+
+
+## 使用
 
 调用方式同`Python/C API`方法, 如`PyBool_Check(x)`使用`pybool.Check(x)`调用, 包名补全交给gopls。
 
@@ -49,13 +54,6 @@ PyLong_AsLongLong | pylong.AsInt64
 
 
 
-## 坑
-
-- [ ] `Exception`的单元测试添加引用计数检查。不过目前没搞懂, 摸了。
-- [ ] GitHub Action
-
-
-
 ## 肝
 
 开发环境: macOS (x86-64)
@@ -71,3 +69,12 @@ PyLong_AsLongLong | pylong.AsInt64
 
 - `PyModule_GetDef`涉及到结构体转换, 目前搁置。
 - `Py_Main`调用卡死, 先注释掉, 随缘解决。
+
+
+
+## 坑
+
+- [ ] `Exception`的单元测试添加引用计数检查。不过目前没搞懂, 摸了
+- [ ] GitHub Action
+- [ ] 详细教程
+

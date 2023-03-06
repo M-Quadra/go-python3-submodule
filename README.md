@@ -6,19 +6,24 @@ This project is an incorporated submodule of Go binds to Python3/C APIs.
 
 This project is inspired from [DataDog/go-python3](https://github.com/DataDog/go-python3) that has Faster compilation with multiple submodules.
 
+
+
 ## Installation
 
 ### Go Modules
 
 ```
-go get github.com/M-Quadra/go-python3-submodule/v10
+go get github.com/M-Quadra/go-python3-submodule/v11
 ```
 
 Python version | Package URL
 :---:|:---:
+3.11 | github.com/M-Quadra/go-python3-submodule/v11 
 3.10 | github.com/M-Quadra/go-python3-submodule/v10 
 3.9 | github.com/M-Quadra/go-python3-submodule/v9 
 3.8 | github.com/M-Quadra/go-python3-submodule/v8 
+
+
 
 ## Usage
 
@@ -35,9 +40,13 @@ PyLong_AsLongLong | pylong.AsInt64
 
 If you are confusing while running the code, to check the GIL or reference count.
 
+
+
 There are two example for goroutine: [example-0](./internal/example/goroutine-0) , [example-1](/internal/example/goroutine-1).
 
 I'd like to use example-0.
+
+
 
 ## Progress
 
@@ -49,7 +58,10 @@ Incorporate the most of the original functions in [DataDog/go-python3](https://g
 
 Add the counting check in references that cover the most of test cases.
 
+
+
 ## Todo
 
 - [ ] Unit test of reference counts in `Exception`.
 - [ ] GitHub Action.
+- [ ] Tutorial.
